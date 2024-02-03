@@ -18,6 +18,6 @@ class Database:
     def close():
         self.connection.close()
     
-    def log():
+    def log(self):
         print(1)
 
