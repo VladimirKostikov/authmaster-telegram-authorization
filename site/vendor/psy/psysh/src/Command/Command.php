@@ -30,13 +30,13 @@ abstract class Command extends BaseCommand
      *
      * @api
      */
-    public function setApplication(Application $application = null): void
+    public function setApplication(Application $application = null)
     {
         if ($application !== null && !$application instanceof Shell) {
             throw new \InvalidArgumentException('PsySH Commands require an instance of Psy\Shell');
         }
 
-        parent::setApplication($application);
+        return parent::setApplication($application);
     }
 
     /**

@@ -19,11 +19,9 @@ use Illuminate\Http\Client\Events\ResponseReceived;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
 use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use JsonSerializable;
-use OutOfBoundsException;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\RequestInterface;
 use RuntimeException;
@@ -78,7 +76,7 @@ class PendingRequest
     /**
      * The raw body for the request.
      *
-     * @var \Psr\Http\Message\StreamInterface|string
+     * @var string
      */
     protected $pendingBody;
 
@@ -259,7 +257,7 @@ class PendingRequest
     /**
      * Attach a raw body to the request.
      *
-     * @param  \Psr\Http\Message\StreamInterface|string  $content
+     * @param  string  $content
      * @param  string  $contentType
      * @return $this
      */
@@ -1008,11 +1006,7 @@ class PendingRequest
                     $this->dispatchResponseReceivedEvent($response);
                 });
             })
-            ->otherwise(function (OutOfBoundsException|TransferException $e) {
-                if ($e instanceof ConnectException) {
-                    $this->dispatchConnectionFailedEvent();
-                }
-
+            ->otherwise(function (TransferException $e) {
                 return $e instanceof RequestException && $e->hasResponse() ? $this->populateResponse($this->newResponse($e->getResponse())) : $e;
             });
     }
@@ -1041,12 +1035,10 @@ class PendingRequest
             $this->transferStats = $transferStats;
         };
 
-        $mergedOptions = $this->normalizeRequestOptions($this->mergeOptions([
+        return $this->buildClient()->$clientMethod($method, $url, $this->mergeOptions([
             'laravel_data' => $laravelData,
             'on_stats' => $onStats,
         ], $options));
-
-        return $this->buildClient()->$clientMethod($method, $url, $mergedOptions);
     }
 
     /**
@@ -1082,25 +1074,6 @@ class PendingRequest
         }
 
         return is_array($laravelData) ? $laravelData : [];
-    }
-
-    /**
-     * Normalize the given request options.
-     *
-     * @param  array  $options
-     * @return array
-     */
-    protected function normalizeRequestOptions(array $options)
-    {
-        foreach ($options as $key => $value) {
-            $options[$key] = match (true) {
-                is_array($value) => $this->normalizeRequestOptions($value),
-                $value instanceof Stringable => $value->toString(),
-                default => $value,
-            };
-        }
-
-        return $options;
     }
 
     /**

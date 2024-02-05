@@ -11,13 +11,11 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Enumerable;
 use Illuminate\Support\HigherOrderCollectionProxy;
-use InvalidArgumentException;
 use JsonSerializable;
 use Symfony\Component\VarDumper\VarDumper;
 use Traversable;
 use UnexpectedValueException;
 use UnitEnum;
-use WeakMap;
 
 /**
  * @template TKey of array-key
@@ -321,27 +319,21 @@ trait EnumeratesValues
      *
      * @template TEnsureOfType
      *
-     * @param  class-string<TEnsureOfType>|array<array-key, class-string<TEnsureOfType>>  $type
+     * @param  class-string<TEnsureOfType>  $type
      * @return static<TKey, TEnsureOfType>
      *
      * @throws \UnexpectedValueException
      */
     public function ensure($type)
     {
-        $allowedTypes = is_array($type) ? $type : [$type];
-
-        return $this->each(function ($item) use ($allowedTypes) {
+        return $this->each(function ($item) use ($type) {
             $itemType = get_debug_type($item);
 
-            foreach ($allowedTypes as $allowedType) {
-                if ($itemType === $allowedType || $item instanceof $allowedType) {
-                    return true;
-                }
+            if ($itemType !== $type && ! $item instanceof $type) {
+                throw new UnexpectedValueException(
+                    sprintf("Collection should only include '%s' items, but '%s' found.", $type, $itemType)
+                );
             }
-
-            throw new UnexpectedValueException(
-                sprintf("Collection should only include [%s] items, but '%s' found.", implode(', ', $allowedTypes), $itemType)
-            );
         });
     }
 
@@ -360,7 +352,7 @@ trait EnumeratesValues
      *
      * @template TMapSpreadValue
      *
-     * @param  callable(mixed...): TMapSpreadValue  $callback
+     * @param  callable(mixed): TMapSpreadValue  $callback
      * @return static<TKey, TMapSpreadValue>
      */
     public function mapSpread(callable $callback)
@@ -1027,7 +1019,6 @@ trait EnumeratesValues
         }
 
         return match (true) {
-            $items instanceof WeakMap => throw new InvalidArgumentException('Collections can not be created using instances of WeakMap.'),
             $items instanceof Enumerable => $items->all(),
             $items instanceof Arrayable => $items->toArray(),
             $items instanceof Traversable => iterator_to_array($items),

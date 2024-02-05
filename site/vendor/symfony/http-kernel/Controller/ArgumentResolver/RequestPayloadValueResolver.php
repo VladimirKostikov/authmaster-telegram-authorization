@@ -88,10 +88,10 @@ class RequestPayloadValueResolver implements ValueResolverInterface, EventSubscr
         foreach ($arguments as $i => $argument) {
             if ($argument instanceof MapQueryString) {
                 $payloadMapper = 'mapQueryString';
-                $validationFailedCode = $argument->validationFailedStatusCode;
+                $validationFailedCode = Response::HTTP_NOT_FOUND;
             } elseif ($argument instanceof MapRequestPayload) {
                 $payloadMapper = 'mapRequestPayload';
-                $validationFailedCode = $argument->validationFailedStatusCode;
+                $validationFailedCode = Response::HTTP_UNPROCESSABLE_ENTITY;
             } else {
                 continue;
             }
@@ -108,22 +108,18 @@ class RequestPayloadValueResolver implements ValueResolverInterface, EventSubscr
                 } catch (PartialDenormalizationException $e) {
                     $trans = $this->translator ? $this->translator->trans(...) : fn ($m, $p) => strtr($m, $p);
                     foreach ($e->getErrors() as $error) {
-                        $parameters = [];
-                        $template = 'This value was of an unexpected type.';
-                        if ($expectedTypes = $error->getExpectedTypes()) {
-                            $template = 'This value should be of type {{ type }}.';
-                            $parameters['{{ type }}'] = implode('|', $expectedTypes);
-                        }
+                        $parameters = ['{{ type }}' => implode('|', $error->getExpectedTypes())];
                         if ($error->canUseMessageForUser()) {
                             $parameters['hint'] = $error->getMessage();
                         }
+                        $template = 'This value should be of type {{ type }}.';
                         $message = $trans($template, $parameters, 'validators');
                         $violations->add(new ConstraintViolation($message, $template, $parameters, null, $error->getPath(), null));
                     }
                     $payload = $e->getData();
                 }
 
-                if (null !== $payload && !\count($violations)) {
+                if (null !== $payload) {
                     $violations->addAll($this->validator->validate($payload, null, $argument->validationGroups ?? null));
                 }
 

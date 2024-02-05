@@ -782,7 +782,9 @@ class Worker
      */
     protected function maxAttemptsExceededException($job)
     {
-        return MaxAttemptsExceededException::forJob($job);
+        return new MaxAttemptsExceededException(
+            $job->resolveName().' has been attempted too many times.'
+        );
     }
 
     /**
@@ -793,7 +795,9 @@ class Worker
      */
     protected function timeoutExceededException($job)
     {
-        return TimeoutExceededException::forJob($job);
+        return new TimeoutExceededException(
+            $job->resolveName().' has timed out.'
+        );
     }
 
     /**

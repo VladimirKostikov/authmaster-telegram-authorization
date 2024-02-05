@@ -40,6 +40,10 @@ final class Registry
         return self::$instance ?? self::$instance = new self;
     }
 
+    private function __construct()
+    {
+    }
+
     /**
      * @psalm-param class-string $class
      *

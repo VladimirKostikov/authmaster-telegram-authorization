@@ -26,7 +26,6 @@ use function substr;
 use function trim;
 use DOMDocument;
 use DOMElement;
-use DOMNode;
 use DOMXPath;
 use PHPUnit\Runner\TestSuiteSorter;
 use PHPUnit\Runner\Version;
@@ -474,7 +473,7 @@ final class Loader
         );
     }
 
-    private function getBoolean(string $value, bool $default): bool
+    private function getBoolean(string $value, bool|string $default): bool|string
     {
         if (strtolower($value) === 'false') {
             return false;
@@ -485,19 +484,6 @@ final class Loader
         }
 
         return $default;
-    }
-
-    private function getValue(string $value): bool|string
-    {
-        if (strtolower($value) === 'false') {
-            return false;
-        }
-
-        if (strtolower($value) === 'true') {
-            return true;
-        }
-
-        return $value;
     }
 
     private function readFilterDirectories(string $filename, DOMXPath $xpath, string $query): FilterDirectoryCollection
@@ -528,8 +514,6 @@ final class Loader
         $files = [];
 
         foreach ($xpath->query($query) as $file) {
-            assert($file instanceof DOMNode);
-
             $filePath = $file->textContent;
 
             if ($filePath) {
@@ -546,14 +530,10 @@ final class Loader
         $exclude = [];
 
         foreach ($xpath->query('groups/include/group') as $group) {
-            assert($group instanceof DOMNode);
-
             $include[] = new Group($group->textContent);
         }
 
         foreach ($xpath->query('groups/exclude/group') as $group) {
-            assert($group instanceof DOMNode);
-
             $exclude[] = new Group($group->textContent);
         }
 
@@ -569,7 +549,7 @@ final class Loader
             return $default;
         }
 
-        return $this->getBoolean(
+        return (bool) $this->getBoolean(
             $element->getAttribute($attribute),
             false,
         );
@@ -619,8 +599,6 @@ final class Loader
         $includePaths = [];
 
         foreach ($xpath->query('php/includePath') as $includePath) {
-            assert($includePath instanceof DOMNode);
-
             $path = $includePath->textContent;
 
             if ($path) {
@@ -648,7 +626,7 @@ final class Loader
 
             $constants[] = new Constant(
                 $const->getAttribute('name'),
-                $this->getValue($value),
+                $this->getBoolean($value, $value),
             );
         }
 
@@ -673,7 +651,7 @@ final class Loader
                 $verbatim = false;
 
                 if ($var->hasAttribute('force')) {
-                    $force = $this->getBoolean($var->getAttribute('force'), false);
+                    $force = (bool) $this->getBoolean($var->getAttribute('force'), false);
                 }
 
                 if ($var->hasAttribute('verbatim')) {
@@ -681,7 +659,7 @@ final class Loader
                 }
 
                 if (!$verbatim) {
-                    $value = $this->getValue($value);
+                    $value = $this->getBoolean($value, $value);
                 }
 
                 $variables[$array][] = new Variable($name, $value, $force);

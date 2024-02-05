@@ -205,7 +205,7 @@ class Stringable implements JsonSerializable, ArrayAccess
      *
      * @param  int  $mode
      * @param  string  $encoding
-     * @return static
+     * @return string
      */
     public function convertCase(int $mode = MB_CASE_FOLD, ?string $encoding = 'UTF-8')
     {
@@ -788,7 +788,7 @@ class Stringable implements JsonSerializable, ArrayAccess
     }
 
     /**
-     * Convert the given string to proper case.
+     * Convert the given string to title case.
      *
      * @return static
      */
@@ -798,35 +798,13 @@ class Stringable implements JsonSerializable, ArrayAccess
     }
 
     /**
-     * Convert the given string to proper case for each word.
+     * Convert the given string to title case for each word.
      *
      * @return static
      */
     public function headline()
     {
         return new static(Str::headline($this->value));
-    }
-
-    /**
-     * Convert the given string to APA-style title case.
-     *
-     * @return static
-     */
-    public function apa()
-    {
-        return new static(Str::apa($this->value));
-    }
-
-    /**
-     * Transliterate a string to its closest ASCII representation.
-     *
-     * @param  string|null  $unknown
-     * @param  bool|null  $strict
-     * @return static
-     */
-    public function transliterate($unknown = '?', $strict = false)
-    {
-        return new static(Str::transliterate($this->value, $unknown, $strict));
     }
 
     /**
@@ -1225,18 +1203,6 @@ class Stringable implements JsonSerializable, ArrayAccess
     }
 
     /**
-     * Unwrap the string with the given strings.
-     *
-     * @param  string  $before
-     * @param  string|null  $after
-     * @return static
-     */
-    public function unwrap($before, $after = null)
-    {
-        return new static(Str::unwrap($this->value, $before, $after));
-    }
-
-    /**
      * Convert the string into a `HtmlString` instance.
      *
      * @return \Illuminate\Support\HtmlString
@@ -1293,12 +1259,11 @@ class Stringable implements JsonSerializable, ArrayAccess
     /**
      * Get the underlying string value as an integer.
      *
-     * @param  int  $base
      * @return int
      */
-    public function toInteger($base = 10)
+    public function toInteger()
     {
-        return intval($this->value, $base);
+        return intval($this->value);
     }
 
     /**

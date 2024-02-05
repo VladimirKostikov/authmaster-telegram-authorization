@@ -83,10 +83,6 @@ final class Generator
         '__clone'         => true,
         '__halt_compiler' => true,
     ];
-
-    /**
-     * @psalm-var array<non-empty-string, MockClass>
-     */
     private static array $cache = [];
 
     /**
@@ -730,13 +726,7 @@ final class Generator
 
         foreach ($mockMethods->asArray() as $mockMethod) {
             $mockedMethods .= $mockMethod->generateCode();
-
-            $configurable[] = new ConfigurableMethod(
-                $mockMethod->methodName(),
-                $mockMethod->defaultParameterValues(),
-                $mockMethod->numberOfParameters(),
-                $mockMethod->returnType(),
-            );
+            $configurable[] = new ConfigurableMethod($mockMethod->methodName(), $mockMethod->returnType());
         }
 
         /** @psalm-var trait-string[] $traits */

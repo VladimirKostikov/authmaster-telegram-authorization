@@ -154,21 +154,12 @@ final class Application
                 $extensionReplacesResultOutput,
             );
 
-            if (!$configuration->debug() && !$extensionReplacesOutput) {
+            if (!$extensionReplacesOutput) {
                 $this->writeRuntimeInformation($printer, $configuration);
                 $this->writePharExtensionInformation($printer, $pharExtensions);
                 $this->writeRandomSeedInformation($printer, $configuration);
 
                 $printer->print(PHP_EOL);
-            }
-
-            if ($configuration->debug()) {
-                EventFacade::instance()->registerTracer(
-                    new EventLogger(
-                        'php://stdout',
-                        false,
-                    ),
-                );
             }
 
             $this->registerLogfileWriters($configuration);
@@ -332,7 +323,7 @@ final class Application
 
     private function loadXmlConfiguration(false|string $configurationFile): XmlConfiguration
     {
-        if ($configurationFile === false) {
+        if (!$configurationFile) {
             return DefaultConfiguration::create();
         }
 
@@ -387,7 +378,7 @@ final class Application
         }
 
         if ($cliConfiguration->migrateConfiguration()) {
-            if ($configurationFile === false) {
+            if (!$configurationFile) {
                 $this->exitWithErrorMessage('No configuration file found to migrate');
             }
 
@@ -646,10 +637,6 @@ final class Application
         );
 
         $first = true;
-
-        if ($t->getPrevious()) {
-            $t = $t->getPrevious();
-        }
 
         do {
             printf(

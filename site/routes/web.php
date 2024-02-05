@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\TokenController;
+use App\Http\Controllers\CodeController;
+use App\Http\Controllers\LogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +35,18 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(SiteController::class)->group(function() {
         Route::get('/sites', 'list')->name('sites_list');
+    });
+
+    Route::controller(TokenController::class)->group(function() {
+        Route::get('/tokens', 'list')->name('tokens_list');
+    });
+
+    Route::controller(CodeController::class)->group(function() {
+        Route::get('/codes', 'list')->name('codes_list');
+    });
+
+    Route::controller(LogController::class)->group(function() {
+        Route::get('/logs', 'list')->name('logs_list');
     });
 });
 

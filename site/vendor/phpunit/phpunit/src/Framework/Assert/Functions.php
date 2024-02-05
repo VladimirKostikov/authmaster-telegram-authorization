@@ -1134,9 +1134,9 @@ if (!function_exists('PHPUnit\Framework\assertObjectHasProperty')) {
      *
      * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
      *
-     * @see Assert::assertObjectHasProperty
+     * @see Assert::assertObjectHasProperty()
      */
-    function assertObjectHasProperty(string $propertyName, object $object, string $message = ''): void
+    function assertObjectHasProperty(string $attributeName, object $object, string $message = ''): void
     {
         Assert::assertObjectHasProperty(...func_get_args());
     }
@@ -1150,9 +1150,9 @@ if (!function_exists('PHPUnit\Framework\assertObjectNotHasProperty')) {
      *
      * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
      *
-     * @see Assert::assertObjectNotHasProperty
+     * @see Assert::assertObjectNotHasProperty()
      */
-    function assertObjectNotHasProperty(string $propertyName, object $object, string $message = ''): void
+    function assertObjectNotHasProperty(string $attributeName, object $object, string $message = ''): void
     {
         Assert::assertObjectNotHasProperty(...func_get_args());
     }
@@ -1206,7 +1206,6 @@ if (!function_exists('PHPUnit\Framework\assertInstanceOf')) {
      *
      * @throws Exception
      * @throws ExpectationFailedException
-     * @throws UnknownClassOrInterfaceException
      *
      * @psalm-template ExpectedType of object
      *
@@ -1857,11 +1856,10 @@ if (!function_exists('PHPUnit\Framework\assertStringNotMatchesFormat')) {
      *
      * @throws ExpectationFailedException
      *
-     * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5472
-     *
      * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
      *
      * @see Assert::assertStringNotMatchesFormat
+     * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5472
      */
     function assertStringNotMatchesFormat(string $format, string $string, string $message = ''): void
     {
@@ -1891,11 +1889,10 @@ if (!function_exists('PHPUnit\Framework\assertStringNotMatchesFormatFile')) {
      *
      * @throws ExpectationFailedException
      *
-     * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5472
-     *
      * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
      *
      * @see Assert::assertStringNotMatchesFormatFile
+     * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5472
      */
     function assertStringNotMatchesFormatFile(string $formatFile, string $string, string $message = ''): void
     {
@@ -2267,6 +2264,9 @@ if (!function_exists('PHPUnit\Framework\assertJsonFileNotEqualsJsonFile')) {
 }
 
 if (!function_exists('PHPUnit\Framework\logicalAnd')) {
+    /**
+     * @throws Exception
+     */
     function logicalAnd(mixed ...$constraints): LogicalAnd
     {
         return Assert::logicalAnd(...func_get_args());
@@ -2372,6 +2372,9 @@ if (!function_exists('PHPUnit\Framework\containsIdentical')) {
 }
 
 if (!function_exists('PHPUnit\Framework\containsOnly')) {
+    /**
+     * @throws Exception
+     */
     function containsOnly(string $type): TraversableContainsOnly
     {
         return Assert::containsOnly(...func_get_args());
@@ -2379,6 +2382,9 @@ if (!function_exists('PHPUnit\Framework\containsOnly')) {
 }
 
 if (!function_exists('PHPUnit\Framework\containsOnlyInstancesOf')) {
+    /**
+     * @throws Exception
+     */
     function containsOnlyInstancesOf(string $className): TraversableContainsOnly
     {
         return Assert::containsOnlyInstancesOf(...func_get_args());
@@ -2484,6 +2490,9 @@ if (!function_exists('PHPUnit\Framework\identicalTo')) {
 }
 
 if (!function_exists('PHPUnit\Framework\isInstanceOf')) {
+    /**
+     * @throws UnknownClassOrInterfaceException
+     */
     function isInstanceOf(string $className): IsInstanceOf
     {
         return Assert::isInstanceOf(...func_get_args());
@@ -2491,6 +2500,9 @@ if (!function_exists('PHPUnit\Framework\isInstanceOf')) {
 }
 
 if (!function_exists('PHPUnit\Framework\isType')) {
+    /**
+     * @throws Exception
+     */
     function isType(string $type): IsType
     {
         return Assert::isType(...func_get_args());
@@ -2526,6 +2538,9 @@ if (!function_exists('PHPUnit\Framework\matches')) {
 }
 
 if (!function_exists('PHPUnit\Framework\stringStartsWith')) {
+    /**
+     * @throws InvalidArgumentException
+     */
     function stringStartsWith(string $prefix): StringStartsWith
     {
         return Assert::stringStartsWith(...func_get_args());
@@ -2533,6 +2548,9 @@ if (!function_exists('PHPUnit\Framework\stringStartsWith')) {
 }
 
 if (!function_exists('PHPUnit\Framework\stringContains')) {
+    /**
+     * @throws InvalidArgumentException
+     */
     function stringContains(string $string, bool $case = true): StringContains
     {
         return Assert::stringContains(...func_get_args());
@@ -2540,6 +2558,9 @@ if (!function_exists('PHPUnit\Framework\stringContains')) {
 }
 
 if (!function_exists('PHPUnit\Framework\stringEndsWith')) {
+    /**
+     * @throws InvalidArgumentException
+     */
     function stringEndsWith(string $suffix): StringEndsWith
     {
         return Assert::stringEndsWith(...func_get_args());

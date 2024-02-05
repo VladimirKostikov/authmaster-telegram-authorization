@@ -302,7 +302,7 @@ class Handler implements ExceptionHandlerContract
         }
 
         try {
-            $logger = $this->newLogger();
+            $logger = $this->container->make(LoggerInterface::class);
         } catch (Exception) {
             throw $e;
         }
@@ -719,16 +719,10 @@ class Handler implements ExceptionHandlerContract
         $this->registerErrorViewPaths();
 
         if ($view = $this->getHttpExceptionView($e)) {
-            try {
-                return response()->view($view, [
-                    'errors' => new ViewErrorBag,
-                    'exception' => $e,
-                ], $e->getStatusCode(), $e->getHeaders());
-            } catch (Throwable $t) {
-                config('app.debug') && throw $t;
-
-                $this->report($t);
-            }
+            return response()->view($view, [
+                'errors' => new ViewErrorBag,
+                'exception' => $e,
+            ], $e->getStatusCode(), $e->getHeaders());
         }
 
         return $this->convertExceptionToResponse($e);
@@ -843,7 +837,7 @@ class Handler implements ExceptionHandlerContract
                 $message .= '. Did you mean one of these?';
 
                 with(new Error($output))->render($message);
-                with(new BulletList($output))->render($alternatives);
+                with(new BulletList($output))->render($e->getAlternatives());
 
                 $output->writeln('');
             } else {
@@ -877,15 +871,5 @@ class Handler implements ExceptionHandlerContract
     protected function isHttpException(Throwable $e)
     {
         return $e instanceof HttpExceptionInterface;
-    }
-
-    /**
-     * Create a new logger instance.
-     *
-     * @return \Psr\Log\LoggerInterface
-     */
-    protected function newLogger()
-    {
-        return $this->container->make(LoggerInterface::class);
     }
 }

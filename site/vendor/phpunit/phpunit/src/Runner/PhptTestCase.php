@@ -193,6 +193,8 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
                 $this->filename,
                 true,
                 TestStatus::unknown(),
+                [],
+                [],
             );
         }
 
@@ -217,8 +219,8 @@ final class PhptTestCase implements Reorderable, SelfDescribing, Test
                 $failure = new PhptAssertionFailedError(
                     $e->getMessage(),
                     0,
-                    (string) $trace[0]['file'],
-                    (int) $trace[0]['line'],
+                    $trace[0]['file'],
+                    $trace[0]['line'],
                     $trace,
                     $comparisonFailure ? $diff : '',
                 );

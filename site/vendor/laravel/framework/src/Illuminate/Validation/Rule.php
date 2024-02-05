@@ -34,7 +34,7 @@ class Rule
     }
 
     /**
-     * Apply the given rules if the given condition is truthy.
+     * Create a new conditional rule set.
      *
      * @param  callable|bool  $condition
      * @param  array|string|\Closure  $rules
@@ -44,19 +44,6 @@ class Rule
     public static function when($condition, $rules, $defaultRules = [])
     {
         return new ConditionalRules($condition, $rules, $defaultRules);
-    }
-
-    /**
-     * Apply the given rules if the given condition is falsy.
-     *
-     * @param  callable|bool  $condition
-     * @param  array|string|\Closure  $rules
-     * @param  array|string|\Closure  $defaultRules
-     * @return \Illuminate\Validation\ConditionalRules
-     */
-    public static function unless($condition, $rules, $defaultRules = [])
-    {
-        return new ConditionalRules($condition, $defaultRules, $rules);
     }
 
     /**

@@ -64,6 +64,7 @@ final class IsEqualCanonicalizing extends Constraint
                 $other,
                 0.0,
                 true,
+                false,
             );
         } catch (ComparisonFailure $f) {
             if ($returnResult) {

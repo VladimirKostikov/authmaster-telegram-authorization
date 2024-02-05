@@ -63,7 +63,9 @@ class PhpRedisConnector implements Connector
      */
     protected function buildClusterConnectionString(array $server)
     {
-        return $this->formatHost($server).':'.$server['port'];
+        return $this->formatHost($server).':'.$server['port'].'?'.Arr::query(Arr::only($server, [
+            'database', 'password', 'prefix', 'read_timeout',
+        ]));
     }
 
     /**
@@ -195,6 +197,10 @@ class PhpRedisConnector implements Connector
 
             if (! empty($options['failover'])) {
                 $client->setOption(RedisCluster::OPT_SLAVE_FAILOVER, $options['failover']);
+            }
+
+            if (! empty($options['name'])) {
+                $client->client('SETNAME', $options['name']);
             }
 
             if (array_key_exists('serializer', $options)) {
