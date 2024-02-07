@@ -15,4 +15,21 @@ class SiteController extends Controller
             'sites' => $sites
         ]);
     }
+
+    
+    protected function create(Request $req): void {
+
+    }
+
+    protected function update(): void {
+
+    }
+
+    protected function destroy(): void {
+
+    }
+
+    protected function get(): Site {
+        
+    }
 }

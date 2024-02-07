@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -34,7 +35,13 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::controller(SiteController::class)->group(function() {
-        Route::get('/sites', 'list')->name('sites_list');
+        Route::prefix('sites')->group(function() {
+            Route::get('/list', 'list')->name('sites_list');    
+
+            Route::view('/add', 'sites.add')->name('sites_add');
+            
+            Route::post('/create', 'create')->name('sites_form_create');
+        });
     });
 
     Route::controller(TokenController::class)->group(function() {
@@ -48,6 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::controller(LogController::class)->group(function() {
         Route::get('/logs', 'list')->name('logs_list');
     });
+
+    // View pages
+    Route::view('/faq', 'pages.faq')->name('faq');
+    Route::view('/rates', 'pages.rates')->name('rates');
 });
 
 

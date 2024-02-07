@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-700 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -15,17 +15,17 @@
                     <x-nav-link :href="route('sites_list')" :active="request()->routeIs('sites_list')">
                         {{ __('Сайты') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('logs_list')">
                         {{ __('Авторизации') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Тарифы') }}
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('tokens_list')">
+                        {{ __('API') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('faq')">
                         {{ __('Помощь') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('API') }}
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('rates')">
+                        {{ __('Тарифы') }}
                     </x-nav-link>
                 </div>
             </div>
