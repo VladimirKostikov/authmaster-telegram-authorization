@@ -18,6 +18,7 @@ class SiteController extends Controller
     }
 
     
+    
     protected function create(AddSiteRequest $req) {
         $new = new Site;
         $new->owner = Auth::user()->id;
@@ -34,11 +35,13 @@ class SiteController extends Controller
 
     }
 
-    protected function destroy(): void {
-
+    protected function destroy(int $id): Site {
+        return Site::delete($id);
     }
 
-    protected function get(): Site {
-        
+    protected function view(int $id): View {
+        $site = Site::find($id);
+        return view('sites.view', ['site'=>$site]);
     }
+    
 }

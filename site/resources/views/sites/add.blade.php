@@ -27,7 +27,7 @@
                 </div>
                 <button type="submit" class="text-white bg-cyan-600 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Добавить сайт</button>
                 @if ($errors->any())
-                <div class="p-5 text-white bg-red-500">
+                <div class="p-5 text-white bg-red-500 mt-10">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
