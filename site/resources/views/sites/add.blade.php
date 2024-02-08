@@ -1,46 +1,41 @@
 <x-app-layout>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-10">
-                <form class="w-50 mx-auto max-w-sm">
-                    <div class="md:flex md:items-center mb-6 mx-auto">
-                      <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-full-name">
-                          Название сайта
-                        </label>
-                      </div>
-                      <div class="md:w-2/3">
-                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value="Jane Doe">
-                      </div>
-                    </div>
-                    <div class="md:flex md:items-center mb-6">
-                      <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" for="inline-password">
-                          Password
-                        </label>
-                      </div>
-                      <div class="md:w-2/3">
-                        <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-password" type="password" placeholder="******************">
-                      </div>
-                    </div>
-                    <div class="md:flex md:items-center mb-6">
-                      <div class="md:w-1/3"></div>
-                      <label class="md:w-2/3 block text-gray-500 font-bold">
-                        <input class="mr-2 leading-tight" type="checkbox">
-                        <span class="text-sm">
-                          Send me your newsletter!
-                        </span>
-                      </label>
-                    </div>
-                    <div class="md:flex md:items-center">
-                      <div class="md:w-1/3"></div>
-                      <div class="md:w-2/3">
-                        <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="button">
-                          Sign Up
-                        </button>
-                      </div>
-                    </div>
-                  </form>
+              <div class="text-center mb-7">
+                <h1 class="text-gray-500 text-xl font-bold">Добавление нового сайта</h1>
+              </div>
+              <form class="max-w-2xl mx-auto" method="POST" action="{{ route('sites_form_create') }}">
+                @csrf
+                <div class="mb-5">
+                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Название сайта</label>
+                  <input autocomplete="off" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Site name" required>
+                </div>
+                <div class="mb-5">
+                  <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL</label>
+                  <input autocomplete="off" type="text" name="url" id="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://example.com/" required>
+                </div>
+                <div class="mb-5">
+                  <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL для HTTPS уведомления</label>
+                  <input autocomplete="off" type="text" name="http_notification" id="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://example.com/notification" required>
+                </div>
+                <div class="flex items-start mb-5">
+                  <div class="flex items-center h-5">
+                    <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required>
+                  </div>
+                  <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Я прочитал <a href="#" class="text-cyan-600">правила использования сервиса</a></label>
+                </div>
+                <button type="submit" class="text-white bg-cyan-600 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Добавить сайт</button>
+                @if ($errors->any())
+                <div class="p-5 text-white bg-red-500">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+              </form>
             </div>
         </div>
     </div>

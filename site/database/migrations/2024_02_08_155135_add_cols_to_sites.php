@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sites', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('owner');
-            $table->string('url');
-            $table->boolean('status')->default(false);
-            $table->timestamps();
+        Schema::table('sites', function (Blueprint $table) {
+            $table->string('name');
+            $table->string('http_notification');
         });
     }
 
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sites');
+        Schema::table('sites', function (Blueprint $table) {
+            //
+        });
     }
 };
