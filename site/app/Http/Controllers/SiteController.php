@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Site;
 use App\Http\Requests\AddSiteRequest;
+use App\Http\Controllers\CheckerController;
 use Auth;
 
 class SiteController extends Controller
@@ -28,7 +29,7 @@ class SiteController extends Controller
         $new->http_notification = $req->http_notification;
         $new->save();
 
-        \App\Http\Controllers\CheckerController::add($new->id);
+        CheckerController::add($new->id);
 
         return redirect()->route('sites_list')->with('success', 'Сайт добавлен. Подтвердите права на него');
     }
@@ -43,7 +44,31 @@ class SiteController extends Controller
 
     protected function view(int $id): View {
         $site = Site::find($id);
-        return view('sites.view', ['site'=>$site]);
+        if(!$site->checked)
+            $code = CheckerController::get($site->id);
+        else
+            $code = null;
+
+        return view('sites.view', [
+            'site'  =>  $site,
+            'code'  =>  $code
+        ]);
     }
     
+    protected function check(int $id) {
+        $site = Site::find($id);
+
+        if($site->owner == Auth::user()->id) {
+            $res = CheckerController::check($site);
+            return $res;
+        }
+            /*
+           if(CheckerController::check($site))
+                return redirect()->back()->with('success', "Права на сайт подтверждены");
+           else
+                return redirect()->back()->with('error', "Ошибка. Проверьте доступность файла авторизации");
+            */
+        else
+            return redirect()->back()->with('error', "Это не ваш сайт");
+    }
 }
