@@ -28,7 +28,9 @@ class SiteController extends Controller
         $new->http_notification = $req->http_notification;
         $new->save();
 
-        return redirect()->route('sites_list');
+        \App\Http\Controllers\CheckerController::add($new->id);
+
+        return redirect()->route('sites_list')->with('success', 'Сайт добавлен. Подтвердите права на него');
     }
 
     protected function update(): void {
