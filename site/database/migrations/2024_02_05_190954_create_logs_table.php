@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
+            $table->integer('site');
+            $table->string('ip');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

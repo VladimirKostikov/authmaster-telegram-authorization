@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('sites_list')" :active="request()->routeIs('sites_list')">
                         {{ __('Сайты') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('logs_list')">
+                    <x-nav-link :href="route('logs_list')" :active="request()->routeIs('logs_list')">
                         {{ __('Авторизации') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('tokens_list')">
@@ -25,7 +25,10 @@
                         {{ __('Помощь') }}
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('rates')">
-                        {{ __('Тарифы') }}
+                        {{ __('Поддержать проект') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('rates')">
+                        {{ __('О проекте') }}
                     </x-nav-link>
                 </div>
             </div>

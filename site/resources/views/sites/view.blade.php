@@ -23,7 +23,7 @@
                             </div>
                             <div class="flex flex-col pt-3">
                                 <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">API ключ</dt>
-                                <dd class="text-lg font-semibold text-gray-500">{{ $site->http_notification }}</dd>
+                                <dd class="text-lg font-semibold text-gray-500">213hj31k2hsdak2o3ksaaq0qnkjhj</dd>
                             </div>
                             <div class="flex flex-col pt-3">
                                 <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Статус</dt>
@@ -64,9 +64,55 @@
                             <a href="{{ route('sites_check',['id'=>$site->id]) }}" class="cursor-pointer block w-full text-white text-center bg-gray-800 p-3 hover:bg-gray-600 font-bold rounded">Подтвердить</a>
                         </div>
                     </div>
+
+                    @else
+                    <div class="bg-gray-100 p-7 rounded">
+                        <div class="bg-white w-full h-full p-10 rounded">
+                            <div class="mb-5">
+                                <h3 class="text-gray-500 text-xl font-bold">Добавление авторизации на сайт</h3>
+                            </div>
+                            <div class="mb-5">
+                                <p class="mb-1 text-gray-500 md:text-lg dark:text-gray-400 text-lg">
+                                    Чтобы добавить авторизацию на сайт, вам необходимо прописать на стороне сервера обработку HTTPS уведомления. <br><br>
+                                    Подробнее об этом можете прочитать <a href="#" class="text-cyan-500 underline decoration-dotted">здесь</a> <br><br>
+                                    Чтобы добавить кнопку авторизации на сайт, скопируйте HTML код с помощью кнопки ниже
+                                </p>
+                            </div>
+                            <div>
+                                <a href="#" class="block bg-cyan-500 text-center p-3 text-white rounded">Скопировать код</a>
+                            </div>
+                        </div>
+                    </div>
                     @endif
-                    <div class="bg-gray-100 p-10 rounded">
-                        1
+                    
+                </div>
+                <div class="mt-10 mb-5">
+                    <h3 class="text-gray-500 text-xl font-bold">Статистика авторизаций</h3>
+                </div>
+                <div class="grid grid-cols-3 mt-20 text-gray-500 ">
+                    <div class="text-center">
+                        <div class="text-sm">
+                            <span>За этот день</span>
+                        </div>
+                        <div class="text-2xl">
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-sm">
+                            <span>За этот месяц</span>
+                        </div>
+                        <div class="text-2xl">
+                            <span>0</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-sm">
+                            <span>За этот год</span>
+                        </div>
+                        <div class="text-2xl">
+                            <span>0</span>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-20">
@@ -75,6 +121,8 @@
                     </div>
                     <canvas id="barChart"></canvas>
                 </div>
+
+                
             </div>
         </div>
     </div>
