@@ -36,27 +36,25 @@ class CheckerController extends Controller
 
     }
 
-    public static function get(int $site): string {
+    public static function getCode(int $site): string {
         return Checker::where('site',$site)->first()->code;
     }
 
-    public static function check(Site $site) {
+    public static function checkCode(Site $site) {
         $checker = Checker::where('site',$site->id)->first();
 
         $url = $site->url;
         $url .= 'checker.txt';
 
-        $res = readfile($url);
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, $url);
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+        $res = curl_exec($curlSession);
+        curl_close($curlSession);
         
-
-        return $res;
-
-        /*
         try {
-            $res = file_get_contents($url);
-
-            return $res
-            
             if($res == $checker->code) {
                 $site->checked = true;
                 $checker->status = true;
@@ -72,6 +70,6 @@ class CheckerController extends Controller
         catch (Exception $e) {
             return false;
         }
-        */
+        
     }
 }

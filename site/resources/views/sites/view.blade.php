@@ -6,7 +6,7 @@
                 <div class="mb-7">
                     <h1 class="text-gray-500 text-xl font-bold">Просмотр сайта</h1>
                 </div>
-                <div class="grid grid-cols-2 gap-10">
+                <div class="grid grid-cols-2">
                     <div>
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col pb-3">
@@ -35,6 +35,14 @@
                                     @endif
                                 </dd>
                             </div>
+
+                            @if($site->checked)
+                                @if($site->status)
+                                    <a href="{{ route('sites_toggle', ['id'=>$site->id]) }}" class="block bg-red-500 text-white w-full text-center p-3 rounded mt-10">Отключить авторизацию</a>
+                                @else
+                                    <a href="{{ route('sites_toggle', ['id'=>$site->id]) }}" class="block bg-green-500 hover:bg-green-400 text-white w-full text-center p-3 rounded mt-10">Включить авторизацию</a>
+                                @endif
+                            @endif
                         </dl>
 
                     </div>
@@ -57,8 +65,14 @@
                         </div>
                     </div>
                     @endif
+                    <div class="bg-gray-100 p-10 rounded">
+                        1
+                    </div>
                 </div>
                 <div class="mt-20">
+                    <div class="mb-7">
+                        <h1 class="text-gray-500 text-xl font-bold">Последние авторизации в этом месяце</h1>
+                    </div>
                     <canvas id="barChart"></canvas>
                 </div>
             </div>

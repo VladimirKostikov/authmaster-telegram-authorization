@@ -38,7 +38,8 @@ Route::middleware('auth')->group(function () {
         Route::prefix('sites')->group(function() {
             Route::get('/list', 'list')->name('sites_list');    
             Route::get('/view/{id}', 'view')->name('sites_view');
-            Route::get('/check/{id}', 'check')->name('sites_check');
+            Route::get('/check/{id}', 'checkPermissionOnSite')->name('sites_check');
+            Route::get('/toggle/{id}', 'toggle')->name('sites_toggle');
 
             Route::view('/add', 'sites.add')->name('sites_add');
             

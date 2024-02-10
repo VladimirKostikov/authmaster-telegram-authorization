@@ -18,6 +18,10 @@ class SiteController extends Controller
         ]);
     }
 
+    protected static function isOwner(int $id): bool {
+        return Site::find($id)->owner === Auth::user()->id;
+    }
+
     
     
     protected function create(AddSiteRequest $req) {
@@ -45,7 +49,7 @@ class SiteController extends Controller
     protected function view(int $id): View {
         $site = Site::find($id);
         if(!$site->checked)
-            $code = CheckerController::get($site->id);
+            $code = CheckerController::getCode($site->id);
         else
             $code = null;
 
@@ -55,19 +59,30 @@ class SiteController extends Controller
         ]);
     }
     
-    protected function check(int $id) {
+    protected function checkPermissionOnSite(int $id) {
         $site = Site::find($id);
 
-        if($site->owner == Auth::user()->id) {
-            $res = CheckerController::check($site);
-            return $res;
-        }
-            /*
-           if(CheckerController::check($site))
+        if(self::isOwner($id))
+            if(CheckerController::checkCode($site))
                 return redirect()->back()->with('success', "Права на сайт подтверждены");
-           else
-                return redirect()->back()->with('error', "Ошибка. Проверьте доступность файла авторизации");
-            */
+            else
+                return redirect()->back()->with('error', "Ошибка. Проверьте доступность или корректность файла авторизации");
+        else
+            return redirect()->back()->with('error', "Это не ваш сайт");
+    
+    }
+
+    protected function toggle(int $id) {
+        if(self::isOwner($id)) {
+            $site = Site::find($id);
+            if($site->status)
+                $site->status = false;
+            else
+                $site->status = true;
+            $site->save();
+
+            return redirect()->back()->with('success', "Настройки обновлены");
+        }
         else
             return redirect()->back()->with('error', "Это не ваш сайт");
     }
