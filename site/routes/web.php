@@ -5,6 +5,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TokenController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,13 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::controller(AuthController::class)->group(function() {
+    Route::prefix('/authorization')->group(function() {
+        Route::get('/create/{site_id}', 'create')->name('auth_create');
+        Route::get('/view/{id}', 'view')->name('auth_view');
+    });
+});
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function() {
@@ -51,12 +59,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/tokens', 'list')->name('tokens_list');
     });
 
-    Route::controller(CodeController::class)->group(function() {
-        Route::get('/codes', 'list')->name('codes_list');
-    });
-
     Route::controller(LogController::class)->group(function() {
-        Route::get('/logs', 'list')->name('logs_list');
+        Route::prefix('logs')->group(function() {
+            Route::get('/list', 'list')->name('logs_list');
+            Route::get('/view/{id}', 'view')->name('logs_view');
+        });
     });
 
     // View pages

@@ -16,8 +16,12 @@
                   <input autocomplete="off" type="text" name="url" id="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://example.com/" required>
                 </div>
                 <div class="mb-5">
-                  <label for="url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL для HTTPS уведомления</label>
-                  <input autocomplete="off" type="text" name="http_notification" id="url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://example.com/notification" required>
+                  <label for="http_notification" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL для HTTPS уведомления</label>
+                  <input autocomplete="off" type="text" name="http_notification" id="http_notification" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://example.com/notification" required>
+                </div>
+                <div class="mb-5">
+                  <label for="http_ref" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">URL для переадресации</label>
+                  <input autocomplete="off" type="text" name="http_ref" id="http_ref" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://example.com/ref" required>
                 </div>
                 <div class="flex items-start mb-5">
                   <div class="flex items-center h-5">

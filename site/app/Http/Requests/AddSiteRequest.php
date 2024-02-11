@@ -26,6 +26,7 @@ class AddSiteRequest extends FormRequest
             'name'  =>  'required|unique:sites|max:255|min:3',
             'url'   =>  'required|unique:sites|max:255|url:https',
             'http_notification'  =>  'required|unique:sites|max:255|url:https',
+            'http_ref' => 'required|unique:sites|max:255|url:https'
         ];
     }
 }

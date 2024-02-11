@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logs', function (Blueprint $table) {
-            $table->id();
-            $table->integer('site');
-            $table->string('ip');
-            $table->boolean('status')->default(false);
-            $table->timestamps();
+        Schema::table('sites', function (Blueprint $table) {
+            $table->string('http_ref');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logs');
+        Schema::table('sites', function (Blueprint $table) {
+            //
+        });
     }
 };

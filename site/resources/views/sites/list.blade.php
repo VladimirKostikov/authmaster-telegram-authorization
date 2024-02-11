@@ -15,7 +15,7 @@
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     @foreach($sites as $site)
                     <div class="group relative">
-                        <div class="bg-gradient-to-b from-cyan-600 text-center text-lg to-cyan-700 text-white aspect-h-1 p-10 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
+                        <div class="bg-gradient-to-b from-cyan-500 text-center text-lg to-cyan-600 text-white aspect-h-1 p-10 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
                             {{ $site->name}}
                         </div>
                         <div class="mt-4 flex justify-between">
@@ -32,7 +32,7 @@
                                 <p class="mt-1 text-sm text-red-500">Не работает</p>
                             @endif
                         </div>
-                        <p class="text-sm font-medium text-gray-900" title="Количество переходов">500</p>
+                        <p class="text-sm font-medium text-gray-900" title="Количество переходов">{{ $site->auths }}</p>
                         </div>
                     </div>
                     @endforeach

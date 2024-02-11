@@ -17,7 +17,7 @@
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     @foreach($sites as $site)
                     <div class="group relative">
-                        <div class="bg-gradient-to-b from-cyan-600 text-center text-lg to-cyan-700 text-white aspect-h-1 p-10 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
+                        <div class="bg-gradient-to-b from-cyan-500 text-center text-lg to-cyan-600 text-white aspect-h-1 p-10 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
                             {{ $site->name}}
                         </div>
                         <div class="mt-4 flex justify-between">
@@ -34,7 +34,7 @@
                                 <p class="mt-1 text-sm text-red-500">Не работает</p>
                             @endif
                         </div>
-                        <p class="text-sm font-medium text-gray-900" title="Количество переходов">500</p>
+                        <p class="text-sm font-medium text-gray-900" title="Количество переходов">{{ $site->auths }}</p>
                         </div>
                     </div>
                     @endforeach
@@ -66,44 +66,17 @@
                         <tbody>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple MacBook Pro 17"
+                                    123523
                                 </th>
                                 <td class="px-6 py-4">
-                                    Silver
+                                    <a href="#" href="http://127.0.0.1/" target="_blank" class="hover:text-cyan-700">http://127.0.0.1/</a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    Laptop
+                                    <span class="bg-green-600 text-white p-3 rounded">Подтверждено</span>
+                                    <span class="bg-red-600 text-white p-3 rounded">Не подтверждено</span>
                                 </td>
                                 <td class="px-6 py-4">
-                                    $2999
-                                </td>
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Microsoft Surface Pro
-                                </th>
-                                <td class="px-6 py-4">
-                                    White
-                                </td>
-                                <td class="px-6 py-4">
-                                    Laptop PC
-                                </td>
-                                <td class="px-6 py-4">
-                                    $1999
-                                </td>
-                            </tr>
-                            <tr class="bg-white dark:bg-gray-800">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Magic Mouse 2
-                                </th>
-                                <td class="px-6 py-4">
-                                    Black
-                                </td>
-                                <td class="px-6 py-4">
-                                    Accessories
-                                </td>
-                                <td class="px-6 py-4">
-                                    $99
+                                    <a href="{{ route('logs_view', ['id'=>1]) }}" class="bg-cyan-600 hover:bg-cyan-500 p-3 rounded text-white">Подробнее</a>
                                 </td>
                             </tr>
                         </tbody>
