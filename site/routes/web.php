@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TokenController;
-use App\Http\Controllers\CodeController;
-use App\Http\Controllers\LogController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,39 +26,39 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(AuthController::class)->group(function() {
-    Route::prefix('/authorization')->group(function() {
+Route::controller(AuthController::class)->group(function () {
+    Route::prefix('/authorization')->group(function () {
         Route::get('/create/{site_id}', 'create')->name('auth_create');
         Route::get('/view/{id}', 'view')->name('auth_view');
     });
 });
 
 Route::middleware('auth')->group(function () {
-    Route::controller(ProfileController::class)->group(function() {
+    Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
 
-    Route::controller(SiteController::class)->group(function() {
-        Route::prefix('sites')->group(function() {
-            Route::get('/list', 'list')->name('sites_list');    
+    Route::controller(SiteController::class)->group(function () {
+        Route::prefix('sites')->group(function () {
+            Route::get('/list', 'list')->name('sites_list');
             Route::get('/view/{id}', 'view')->name('sites_view');
             Route::get('/check/{id}', 'checkPermissionOnSite')->name('sites_check');
             Route::get('/toggle/{id}', 'toggle')->name('sites_toggle');
 
             Route::view('/add', 'sites.add')->name('sites_add');
-            
+
             Route::post('/create', 'create')->name('sites_form_create');
         });
     });
 
-    Route::controller(TokenController::class)->group(function() {
+    Route::controller(TokenController::class)->group(function () {
         Route::get('/tokens', 'list')->name('tokens_list');
     });
 
-    Route::controller(LogController::class)->group(function() {
-        Route::prefix('logs')->group(function() {
+    Route::controller(LogController::class)->group(function () {
+        Route::prefix('logs')->group(function () {
             Route::get('/list', 'list')->name('logs_list');
             Route::get('/view/{id}', 'view')->name('logs_view');
         });
@@ -70,6 +68,5 @@ Route::middleware('auth')->group(function () {
     Route::view('/faq', 'pages.faq')->name('faq');
     Route::view('/rates', 'pages.rates')->name('rates');
 });
-
 
 require __DIR__.'/auth.php';

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Auth;
+use Illuminate\Foundation\Http\FormRequest;
 
 class AddSiteRequest extends FormRequest
 {
@@ -23,10 +23,10 @@ class AddSiteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'  =>  'required|unique:sites|max:255|min:3',
-            'url'   =>  'required|unique:sites|max:255|url:https',
-            'http_notification'  =>  'required|unique:sites|max:255|url:https',
-            'http_ref' => 'required|unique:sites|max:255|url:https'
+            'name' => 'required|unique:sites|max:255|min:3',
+            'url' => 'required|unique:sites|max:255|url:https',
+            'http_notification' => 'required|unique:sites|max:255|url:https',
+            'http_ref' => 'required|unique:sites|max:255|url:https',
         ];
     }
 }
