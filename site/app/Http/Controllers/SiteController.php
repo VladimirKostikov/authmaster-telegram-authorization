@@ -9,6 +9,31 @@ use Illuminate\View\View;
 
 class SiteController extends Controller
 {
+    protected function checkPermissionOnSite(int $id)
+    {
+        $site = Site::find($id);
+
+        if (self::isOwner($id)) {
+            if (CheckerController::checkCode($site)) {
+                return redirect()->back()->with('success', 'Права на сайт подтверждены');
+            } else {
+                return redirect()->back()->with('error', 'Ошибка. Проверьте доступность или корректность файла авторизации');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Это не ваш сайт');
+        }
+
+    }
+
+    protected static function getHTMLButtonCode(int $site): View {
+        return view('components/api-auth-link',['site_id'=>$site]);
+    }
+
+    protected static function isOwner(int $id): bool
+    {
+        return Site::find($id)->owner === Auth::user()->id;
+    }
+
     protected function list(): View
     {
         $sites = Site::where('owner', Auth::user()->id)->get();
@@ -18,10 +43,6 @@ class SiteController extends Controller
         ]);
     }
 
-    protected static function isOwner(int $id): bool
-    {
-        return Site::find($id)->owner === Auth::user()->id;
-    }
 
     protected function create(AddSiteRequest $req)
     {
@@ -60,24 +81,11 @@ class SiteController extends Controller
         return view('sites.view', [
             'site' => $site,
             'code' => $code,
+            'auth_button' => self::getHTMLButtonCode($site->id)
         ]);
     }
 
-    protected function checkPermissionOnSite(int $id)
-    {
-        $site = Site::find($id);
-
-        if (self::isOwner($id)) {
-            if (CheckerController::checkCode($site)) {
-                return redirect()->back()->with('success', 'Права на сайт подтверждены');
-            } else {
-                return redirect()->back()->with('error', 'Ошибка. Проверьте доступность или корректность файла авторизации');
-            }
-        } else {
-            return redirect()->back()->with('error', 'Это не ваш сайт');
-        }
-
-    }
+   
 
     protected function toggle(int $id)
     {

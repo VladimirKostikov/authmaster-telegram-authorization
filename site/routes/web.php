@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\LogController;
+use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TokenController;
@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/tokens', 'list')->name('tokens_list');
     });
 
-    Route::controller(LogController::class)->group(function () {
+    Route::controller(CodeController::class)->group(function () {
         Route::prefix('logs')->group(function () {
             Route::get('/list', 'list')->name('logs_list');
             Route::get('/view/{id}', 'view')->name('logs_view');

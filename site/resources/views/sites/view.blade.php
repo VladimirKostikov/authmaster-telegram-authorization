@@ -70,7 +70,7 @@
                     </div>
 
                     @else
-                    <div class="bg-gray-100 p-7 rounded">
+                    <div class="bg-gray-100 p-5 rounded">
                         <div class="bg-white w-full h-full p-10 rounded">
                             <div class="mb-5">
                                 <h3 class="text-gray-500 text-xl font-bold">Добавление авторизации на сайт</h3>
@@ -82,9 +82,10 @@
                                     Чтобы добавить кнопку авторизации на сайт, скопируйте HTML код с помощью кнопки ниже
                                 </p>
                             </div>
-                            <div>
-                                <a href="#" class="block bg-cyan-500 text-center p-3 text-white rounded">Скопировать код</a>
+                            <div class="mb-5">
+                                <a href="#" onclick='copy(`{{ $auth_button }}`, "Код скопирован")' class="block bg-cyan-500 text-center p-3 text-white rounded">Скопировать код</a>
                             </div>
+                            {!! $auth_button !!}
                         </div>
                     </div>
                     @endif

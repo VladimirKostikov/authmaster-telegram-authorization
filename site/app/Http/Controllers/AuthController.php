@@ -31,18 +31,22 @@ class AuthController extends Controller
 
             return redirect()->route('auth_view', ['id' => $new->id]);
         } else {
-            return 'Error. Login through this site is currently unavailable';
+            return 'Error. Login through telegram on this site is currently unavailable';
         }
     }
 
     protected function view(int $id)
     {
         $code = Code::find($id);
-        $sitename = Site::find($code->site)->name;
+        $site = Site::find($code->site);
+
+        $sitename = $site->name;
+        $siteurl = $site->url;
 
         return view('auth', [
             'code' => $code,
             'sitename' => $sitename,
+            'siteurl' => $siteurl
         ]);
     }
 }
