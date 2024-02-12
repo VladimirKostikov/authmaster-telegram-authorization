@@ -21,6 +21,16 @@ class AuthController extends Controller
 
     protected function create(int $site_id)
     {
+        $code = self::generateCode();
+        $flag = false;
+
+        while(!$flag) {
+            if(Code::where('code',$code)->first() == NULL)
+                $flag = true;
+            else
+                $code = self::generateCode();
+        }
+        
         $site = Site::find($site_id);
         if ($site->checked && $site->status) {
             $new = new Code;

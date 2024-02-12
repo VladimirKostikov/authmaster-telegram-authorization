@@ -58,9 +58,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::controller(CodeController::class)->group(function () {
-        Route::prefix('logs')->group(function () {
-            Route::get('/list', 'list')->name('logs_list');
-            Route::get('/view/{id}', 'view')->name('logs_view');
+        Route::prefix('codes')->group(function () {
+            Route::get('/list', 'list')->name('codes_list');
+            Route::get('/site/{id}', 'site')->name('codes_site');
+            Route::get('/view/{id}', 'view')->name('codes_view');
         });
     });
 

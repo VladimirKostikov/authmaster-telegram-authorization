@@ -82,10 +82,18 @@
                                     Чтобы добавить кнопку авторизации на сайт, скопируйте HTML код с помощью кнопки ниже
                                 </p>
                             </div>
-                            <div class="mb-5">
-                                <a href="#" onclick='copy(`{{ $auth_button }}`, "Код скопирован")' class="block bg-cyan-500 text-center p-3 text-white rounded">Скопировать код</a>
+                            <div class="mb-2">
+                                <a href="#" onclick='copy(`{{ $auth_button }}`, "Код скопирован")' class="block hover:bg-cyan-400 bg-cyan-500 text-center p-3 text-white rounded">Скопировать код</a>
                             </div>
-                            {!! $auth_button !!}
+
+                            <div class="mb-2">
+                                <a href="#" onclick='copy(`{{ $auth_button }}`, "Код скопирован")' class="block hover:bg-green-300 bg-green-400 text-center p-3 text-white rounded">Открыть документацию</a>
+                            </div>
+
+                            <div class="mb-2">
+                                {!! $auth_button !!}                            
+                            </div>
+                            
                         </div>
                     </div>
                     @endif

@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white p-10 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
+            <div class="bg-white p-10 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 @if($sites->isEmpty())
                 <div class="text-center text-gray-900 dark:text-gray-100 ">
                     {{ __("На данный момент вы не добавили сайт") }}.
@@ -9,12 +9,14 @@
                 </div>
                 @else
 
-                
+            
+
+                @if($sites->count() != 1)
                 <div>
                     <h1 class="text-gray-500 text-xl font-bold">Добавленные сайты </h1>
                 </div>
 
-                <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                <div class="mt-6 mb-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     @foreach($sites as $site)
                     <div class="group relative">
                         <div class="bg-gradient-to-b from-cyan-500 text-center text-lg to-cyan-600 text-white aspect-h-1 p-10 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
@@ -23,7 +25,7 @@
                         <div class="mt-4 flex justify-between">
                         <div>
                             <h3 class="text-sm text-gray-700">
-                            <a href="{{ route('sites_view', ['id'=>$site->id]) }}">
+                            <a href="{{ route('codes_site', ['id'=>$site->id]) }}">
                                 <span aria-hidden="true" class="absolute inset-0"></span>
                                 Авторизаций
                             </a>
@@ -39,8 +41,9 @@
                     </div>
                     @endforeach
                 </div>
+                @endif
 
-                <div class="mt-10 mb-10">
+                <div class="mb-10">
                     <h1 class="text-gray-500 text-xl font-bold">Все авторизации</h1>
                 </div>
 
@@ -64,21 +67,26 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($codes as $code)
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    123523
+                                    {{ $code->id }}
                                 </th>
                                 <td class="px-6 py-4">
                                     <a href="#" href="http://127.0.0.1/" target="_blank" class="hover:text-cyan-700">http://127.0.0.1/</a>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <span class="bg-green-600 text-white p-3 rounded">Подтверждено</span>
-                                    <span class="bg-red-600 text-white p-3 rounded">Не подтверждено</span>
+                                    @if($code->status)
+                                        <span class="bg-green-600 text-white p-3 rounded">Подтверждено</span>
+                                    @else
+                                        <span class="bg-red-600 text-white p-3 rounded">Не подтверждено</span>
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('logs_view', ['id'=>1]) }}" class="bg-cyan-600 hover:bg-cyan-500 p-3 rounded text-white">Подробнее</a>
+                                    <a href="{{ route('codes_view', ['id'=>$code->id]) }}" class="bg-cyan-600 hover:bg-cyan-500 p-3 rounded text-white">Подробнее</a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
