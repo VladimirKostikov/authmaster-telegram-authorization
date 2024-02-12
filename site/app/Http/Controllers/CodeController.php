@@ -40,7 +40,7 @@ class CodeController extends Controller
         $site = Site::find($code->site);
 
         if($site->owner === Auth::user()->id)
-            return view('codes.site', [
+            return view('codes.view', [
                 'site'  =>  $site,
                 'code'  =>  $code
             ]);
