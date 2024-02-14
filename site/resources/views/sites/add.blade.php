@@ -29,7 +29,7 @@
                   </div>
                   <label for="remember" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Я прочитал <a href="#" class="text-tg-200">правила использования сервиса</a></label>
                 </div>
-                <button type="submit" class="text-white bg-tg-200 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Добавить сайт</button>
+                <button type="submit" class="text-white bg-tg-100 hover:bg-tg-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Добавить сайт</button>
                 @if ($errors->any())
                 <div class="p-5 text-white bg-red-500 mt-10">
                     <ul>

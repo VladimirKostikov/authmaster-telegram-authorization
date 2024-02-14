@@ -67,7 +67,7 @@ Route::middleware('auth')->group(function () {
 
     // View pages
     Route::view('/faq', 'pages.faq')->name('faq');
-    Route::view('/rates', 'pages.rates')->name('rates');
+    Route::view('/donate', 'pages.donate')->name('donate');
 });
 
 require __DIR__.'/auth.php';

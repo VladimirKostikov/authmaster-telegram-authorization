@@ -78,6 +78,7 @@ class SiteController extends Controller
         $new->url = $req->url;
         $new->status = false;
         $new->http_notification = $req->http_notification;
+        $new->http_ref = $req->http_ref;
         $new->api = self::getValidApiCode();    
         $new->save();
 
