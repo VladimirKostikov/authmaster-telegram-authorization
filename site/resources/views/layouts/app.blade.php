@@ -31,6 +31,7 @@
             <main>
                 {{ $slot }}
             
+                <div class="fixed bottom-0 text-center w-full text-gray-400"><span>v1.0 Author: <a href="#">Vladimir Kostikov</a></span></div>
                 
                 @if(Session::has('error') || Session::has('success'))
                     @if(Session::has('success'))

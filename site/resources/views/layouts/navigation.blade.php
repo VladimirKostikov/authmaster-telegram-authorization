@@ -18,16 +18,16 @@
                     <x-nav-link :href="route('codes_list')" :active="request()->routeIs('logs_list')">
                         {{ __('Авторизации') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('tokens_list')">
+                    <x-nav-link :href="url('https://github.com/VladimirKostikov/telegram-authorization/wiki')" :active="request()->routeIs('tokens_list')">
                         {{ __('API') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('faq')">
+                    <x-nav-link :href="route('support')" :active="request()->routeIs('support')">
                         {{ __('Помощь') }}
                     </x-nav-link>
                     <x-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
                         {{ __('Поддержать проект') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('rates')">
+                    <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
                         {{ __('О проекте') }}
                     </x-nav-link>
                 </div>
