@@ -15,7 +15,7 @@
                 <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                     @foreach($sites as $site)
                     <div class="group relative">
-                        <div class="bg-gradient-to-b from-cyan-500 text-center text-lg to-cyan-600 text-white aspect-h-1 p-10 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
+                        <div class="bg-gradient-to-b from-tg-100 text-center text-lg to-tg-200 text-white aspect-h-1 p-10 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75">
                             {{ $site->name}}
                         </div>
                         <div class="mt-4 flex justify-between">

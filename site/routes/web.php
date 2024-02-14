@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('sites_list');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(AuthController::class)->group(function () {
