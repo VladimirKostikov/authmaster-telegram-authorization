@@ -204,7 +204,7 @@
             </div>
 
             <div class="mb-2">
-                <a href="https://t.me/AuthMasterBot" target="_blank" class="bg-cyan-500 hover:bg-cyan-400 block text-center p-3 rounded text-white font-bold">Открыть бота</a>
+                <a href="https://t.me/AuthMasterBot" target="_blank" class="bg-tg-100 hover:bg-cyan-400 block text-center p-3 rounded text-white font-bold">Открыть бота</a>
             </div>
 
             <div class="mb-5">

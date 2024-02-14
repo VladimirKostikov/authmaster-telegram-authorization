@@ -9,6 +9,32 @@ use Illuminate\View\View;
 
 class SiteController extends Controller
 {
+    protected static function generateCode(): string
+    {
+        $chars = '0123456789abcdefghijklmnopqrs092u3tuvwxyzaskdhfhf9882323ABCDEFGHIJKLMNksadf9044OPQRSTUVWXYZ';
+        $charsLength = strlen($chars);
+        $res = '';
+        for ($i = 0; $i < $charsLength; $i++) {
+            $res .= $chars[rand(0, $charsLength - 1)];
+        }
+
+        return $res;
+    }
+
+    protected static function getValidApiCode(): string {
+        $flag = 0;
+        $code = self::generateCode();
+
+        while(!$flag) {
+            if(Site::where('api', $code)->first() == NULL)
+                $flag = 1;
+            else
+                $code = self::generateCode();
+        }
+
+        return $code;
+    }
+
     protected function checkPermissionOnSite(int $id)
     {
         $site = Site::find($id);
@@ -52,6 +78,7 @@ class SiteController extends Controller
         $new->url = $req->url;
         $new->status = false;
         $new->http_notification = $req->http_notification;
+        $new->api = self::getValidApiCode();    
         $new->save();
 
         CheckerController::add($new->id);

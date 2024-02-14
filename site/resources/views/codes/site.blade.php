@@ -42,7 +42,7 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="{{ route('codes_view', ['id'=>$code->id]) }}" target="_blank" class="bg-cyan-600 hover:bg-cyan-500 p-3 rounded text-white">Подробнее</a>
+                                    <a href="{{ route('codes_view', ['id'=>$code->id]) }}" target="_blank" class="bg-tg-200 hover:bg-tg-100 p-3 rounded text-white">Подробнее</a>
                                 </td>
                             </tr>
                             @endforeach

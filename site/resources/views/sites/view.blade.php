@@ -51,7 +51,7 @@
 
                     </div>
                     @if(!$site->checked)
-                    <div class="bg-cyan-500 p-10 rounded">
+                    <div class="bg-tg-100 p-10 rounded">
                         <div class="text-white">
                             <h2 class="font-bold text-2xl">Подтверждение прав</h2>
                             <p>Чтобы активировать систему авторизации через Telegram на вашем сайте, вам необходимо подтвердить права на него. Для этого вам нужно создать файл checker.txt, чтобы он был доступен по ссылке: <b>{{ $site->url }}checker.txt</b> и вставить туда код, написанный ниже </p>
@@ -78,12 +78,12 @@
                             <div class="mb-5">
                                 <p class="mb-1 text-gray-500 md:text-lg dark:text-gray-400 text-lg">
                                     Чтобы добавить авторизацию на сайт, вам необходимо прописать на стороне сервера обработку HTTPS уведомления. <br><br>
-                                    Подробнее об этом можете прочитать <a href="#" class="text-cyan-500 underline decoration-dotted">здесь</a> <br><br>
+                                    Подробнее об этом можете прочитать <a href="#" class="text-tg-100 underline decoration-dotted">здесь</a> <br><br>
                                     Чтобы добавить кнопку авторизации на сайт, скопируйте HTML код с помощью кнопки ниже
                                 </p>
                             </div>
                             <div class="mb-2">
-                                <a href="#" onclick='copy(`{{ $auth_button }}`, "Код скопирован")' class="block hover:bg-cyan-400 bg-cyan-500 text-center p-3 text-white rounded">Скопировать код</a>
+                                <a href="#" onclick='copy(`{{ $auth_button }}`, "Код скопирован")' class="block hover:bg-cyan-400 bg-tg-100 text-center p-3 text-white rounded">Скопировать код</a>
                             </div>
 
                             <div class="mb-2">

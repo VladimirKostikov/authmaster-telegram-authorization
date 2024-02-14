@@ -5,7 +5,7 @@
                 @if($sites->isEmpty())
                 <div class="text-center text-gray-900 dark:text-gray-100 ">
                     {{ __("На данный момент вы не добавили сайт") }}.
-                    <a href="{{ route('sites_add') }}" class="text-cyan-600">Добавьте прямо сейчас</a>
+                    <a href="{{ route('sites_add') }}" class="text-tg-200">Добавьте прямо сейчас</a>
                 </div>
                 @else
 
