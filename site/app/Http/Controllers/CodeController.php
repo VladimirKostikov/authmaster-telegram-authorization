@@ -31,7 +31,7 @@ class CodeController extends Controller
                 'codes' =>  $codes
             ]);
         else
-            return redirect()->back()->with('error', "Ошибка. Нет доступа");
+            return redirect()->back()->with('error', __('Notififcation error not owner'));
         
     }
 
@@ -45,6 +45,6 @@ class CodeController extends Controller
                 'code'  =>  $code
             ]);
         else
-            return redirect()->back()->with('error', "Ошибка. Нет доступа");
+            return redirect()->back()->with('error', __('Notififcation error not owner'));
     }
 }

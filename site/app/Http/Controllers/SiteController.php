@@ -41,12 +41,12 @@ class SiteController extends Controller
 
         if (self::isOwner($id)) {
             if (CheckerController::checkCode($site)) {
-                return redirect()->back()->with('success', 'Права на сайт подтверждены');
+                return redirect()->back()->with('success', __('Notification success site rights confirmed'));
             } else {
-                return redirect()->back()->with('error', 'Ошибка. Проверьте доступность или корректность файла авторизации');
+                return redirect()->back()->with('error', __('Notification error site rights'));
             }
         } else {
-            return redirect()->back()->with('error', 'Это не ваш сайт');
+            return redirect()->back()->with('error', __('Notififcation error not owner'));
         }
 
     }
@@ -84,7 +84,7 @@ class SiteController extends Controller
 
         CheckerController::add($new->id);
 
-        return redirect()->route('sites_list')->with('success', 'Сайт добавлен. Подтвердите права на него');
+        return redirect()->route('sites_list')->with('success', __('Notification success site added'));
     }
 
     protected function update(): void
@@ -126,9 +126,9 @@ class SiteController extends Controller
             }
             $site->save();
 
-            return redirect()->back()->with('success', 'Настройки обновлены');
+            return redirect()->back()->with('success', __('Notification success site settings updated'));
         } else {
-            return redirect()->back()->with('error', 'Это не ваш сайт');
+            return redirect()->back()->with('error', __('Notififcation error not owner'));
         }
     }
 }

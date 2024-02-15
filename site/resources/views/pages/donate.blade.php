@@ -1,23 +1,18 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Page title donation') }}
+        </h2>
+      </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-10 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
                 <div>
-                    <h1 class="font-bold text-3xl text-gray-500">Поддержка проекта</h1>
+                    <h1 class="font-bold text-3xl text-gray-500">{{ __('Donation title') }}</h1>
                 </div>
                 <div class="mt-5 text-lg text-justify text-gray-600">
                     <p class="mb-3">
-                        Функционал проекта бесплатный для использования, однако вы всегда можете поддержать его своим пожертвованием.
-                    </p>
-                    <p class="mb-3">
-                        Собранные средства пойдут на поддержку разработчика и работоспособности сервиса.
-                        На данный момент, хостинг для сайта и бота оплачивается из личного кармана разработчика.
-                    </p>
-                    <p class="mb-3">
-                        Ниже представлены реквизиты, на которые вы можете отправить свое пожертвование
-                    </p>
-                    <p>
-                        Буду рад и благодарен любой пожертвованной сумме
+                        {!! __('Donation description') !!}
                     </p>
                 </div>
 

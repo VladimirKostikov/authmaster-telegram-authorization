@@ -1,9 +1,14 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Page title auths site') }}
+        </h2>
+      </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white p-10 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg ">
                 <div class="mb-10">
-                    <h1 class="text-gray-500 text-xl font-bold">Авторизации на сайте {{ $site->name }}</h1>
+                    <h1 class="text-gray-500 text-xl font-bold">{{ $site->name }}</h1>
                 </div>
 
 
@@ -15,13 +20,13 @@
                                     ID
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Сайт
+                                    {{ __('Authorizations list table site') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Статус
+                                    {{ __('Authorizations list table status') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Посмотреть
+                                    {{ __('Authorizations list table look') }}
                                 </th>
                             </tr>
                         </thead>
@@ -36,9 +41,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     @if($code->status)
-                                        <span class="bg-green-600 text-white p-3 rounded">Подтверждено</span>
+                                        <span class="bg-green-600 text-white p-3 rounded">{{ __('Authorizations list table status true') }}</span>
                                     @else
-                                        <span class="bg-red-600 text-white p-3 rounded">Не подтверждено</span>
+                                        <span class="bg-red-600 text-white p-3 rounded">{{ __('Authorizations list table status false') }}</span>
                                     @endif
                                 </td>
                                 <td class="px-6 py-4">
