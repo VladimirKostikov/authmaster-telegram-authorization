@@ -1,4 +1,4 @@
-{    
+{ 
     "Sites" : "Sites",
     "Authorizations" : "Authorizations",
     "API" : "API",
@@ -83,5 +83,6 @@
     "Page title auths site": "Authorizations on site",
     "Page title help": "Support",
     "Page title donation": "Donation",
-    "Page title about": "About project"
+    "Page title about": "About project",
+    "Donate address": "Address copied"
 }

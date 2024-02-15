@@ -33,7 +33,11 @@ Route::controller(AuthController::class)->group(function () {
     });
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'language')->group(function () {
+    Route::get('/lang/{lang}', function(string $lang) {
+        session(['lang' => $lang]);
+        return redirect()->back();
+    })->name('setLang');
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');
