@@ -78,7 +78,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('setLang',['lang'=>'gb'])" class="flex gap-3">
+                        <x-dropdown-link :href="route('setLang',['lang'=>'en'])" class="flex gap-3">
                             <img src="{{ asset('assets/icons/gb.svg') }}" width="20" alt=""><span>English</span>
                         </x-dropdown-link>
                         <x-dropdown-link :href="route('setLang',['lang'=>'ru'])" class="flex gap-3">
