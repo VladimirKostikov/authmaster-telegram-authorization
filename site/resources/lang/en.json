@@ -84,5 +84,10 @@
     "Page title help": "Support",
     "Page title donation": "Donation",
     "Page title about": "About project",
-    "Donate address": "Address copied"
+    "Donate address": "Address copied",
+    "Auth page title": "Sign In",
+    "Auth page description": "To authorize on the site via Telegram, you need to copy the code below and send it to our bot. <br><br> After you have sent the code to the bot, you need to click on the 'Confirm authorization' button",
+    "Auth page button open bot": "Open Telegram bot",
+    "Auth page button confirm": "Confirm authorization",
+    "Auth page not official": "This is an unofficial authorization service through Telegram. You can find out more about the service <a href='#' class='underline'>here</a>."
 }

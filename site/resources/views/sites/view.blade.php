@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Page title auths') }}
+            {{ __('Page title sites view') }}
         </h2>
     </x-slot>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,7 +11,7 @@
                 <div class="mb-7">
                     <h1 class="text-gray-500 text-xl font-bold">{{ $site->name }}</h1>
                 </div>
-                <div class="grid grid-cols-2">
+                <div class="grid gap-x-6 gap-y-10 sm:grid-cols-1 lg:grid-cols-2 xl:gap-x-8">
                     <div>
                         <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                             <div class="flex flex-col pb-3">

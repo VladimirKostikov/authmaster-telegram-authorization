@@ -26,10 +26,12 @@ Route::get('/dashboard', function () {
     return redirect()->route('sites_list');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::controller(AuthController::class)->group(function () {
-    Route::prefix('/authorization')->group(function () {
-        Route::get('/create/{site_id}', 'create')->name('auth_create');
-        Route::get('/view/{id}', 'view')->name('auth_view');
+Route::middleware('language')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::prefix('/authorization')->group(function () {
+            Route::get('/create/{site_id}', 'create')->name('auth_create');
+            Route::get('/view/{id}', 'view')->name('auth_view');
+        });
     });
 });
 

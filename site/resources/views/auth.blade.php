@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
+    <link rel="shortcut icon" href="{{ asset('assets/icons/favicon.ico') }}" type="image/x-icon">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
@@ -185,16 +186,13 @@
 
         <div class="w-full sm:max-w-md mt-6 px-8 py-6 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
             <div class="text-center text-2xl mb-1 ">
-                <h1>Авторизация на сайте {{ $sitename }}</h1>
+                <h1>{{ __('Auth page title') }} {{ $sitename }}</h1>
             </div>
             <div class="mb-5 text-center text-sm text-gray-400">
-                <a href="#">{{ $siteurl }}</a>
+                <a href="{{ url($siteurl) }}">{{ $siteurl }}</a>
             </div>
             <div class="text-justify text-base mb-5">
-                <p>Для авторизации на сайте через Telegram вам необходимо скопировать код ниже и отправить его нашему боту.</p>
-            </div>
-            <div class="text-justify text-base mb-5">
-                <p>После того, как вы отправили код боту, вам необходимо перейти нажать на кнопку "Проверить авторизацию"</p>
+                <p>{!! __('Auth page description') !!}</p>
             </div>
             <div onclick="copy('{{ $code->code }}', 'Код скопирован')" class="mb-5 rounded bg-gray-100 hover:text-gray-400 p-2 mt-5 mb-5 truncate pr-8 relative cursor-pointer">
                 <div class="absolute top-2 right-2">
@@ -204,15 +202,15 @@
             </div>
 
             <div class="mb-2">
-                <a href="https://t.me/AuthMasterBot" target="_blank" class="bg-tg-100 hover:bg-cyan-400 block text-center p-3 rounded text-white font-bold">Открыть бота</a>
+                <a href="https://t.me/AuthMasterBot" target="_blank" class="bg-tg-100 hover:bg-cyan-400 block text-center p-3 rounded text-white font-bold">{{ __('Auth page button open bot') }}</a>
             </div>
 
             <div class="mb-5">
-                <a href="#" class="bg-green-400 hover:bg-green-300 block text-center p-3 rounded text-white font-bold">Подтвердить авторизацию</a>
+                <a href="#" class="bg-green-400 hover:bg-green-300 block text-center p-3 rounded text-white font-bold">{{ __('Auth page confirm') }}</a>
             </div>
 
             <div>
-                <p class="text-sm text-gray-400">Это неофициальный сервис авторизации через Telegram. Узнать больше о сервисе можно <a href="#" class="underline">здесь</a>.</p>
+                <p class="text-sm text-gray-400">{!! __('Auth page not official') !!}</p>
             </div>
             
         </div>
