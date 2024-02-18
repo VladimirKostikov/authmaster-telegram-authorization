@@ -1,10 +1,14 @@
 from modules import config
 
 class Language:
-    def __init__(self, code, mysql):
-        self.lang = code
+    def __init__(self, mysql, code):
         self.langs = config.langs
         self.mysql = mysql
+
+        if code in self.langs:
+            self.lang = code
+        else:
+            self.lang = "en"
     
     def find(self, user_id):
         sql = "SELECT * FROM bot_langs WHERE user_id=%s AND lang=%s"
@@ -19,3 +23,6 @@ class Language:
     
     def getLangs(self):
         return self.langs
+    
+    def getLang(self):
+        return self.lang
