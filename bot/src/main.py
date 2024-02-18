@@ -1,18 +1,19 @@
-from modules import config
-from modules import db
 import requests
 import telebot;
+from modules import config
+from modules import db
+from modules import commands
 
+mysql = db.Database()
 bot = telebot.TeleBot(config.token);
+
+switch = {
+    "/start": commands.start,
+}
 
 @bot.message_handler(content_types=['text'])
 
 def get_text_messages(message):
-    if message.text == "Привет":
-        bot.send_message(message.from_user.id, "Привет, чем я могу тебе помочь?")
-    elif message.text == "/help":
-        bot.send_message(message.from_user.id, "Напиши привет")
-    else:
-        bot.send_message(message.from_user.id, message.from_user.id)
+    switch.get(message.text, commands.default)(bot, message)
 
 bot.polling(none_stop=True, interval=0)

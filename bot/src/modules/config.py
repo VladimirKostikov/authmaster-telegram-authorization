@@ -12,3 +12,4 @@ password     =  config.get('db', 'password')
 config.read('config/tg.ini')
  
 token        =  config.get('tg', 'token')
+langs        =  config.get('tg', 'langs')

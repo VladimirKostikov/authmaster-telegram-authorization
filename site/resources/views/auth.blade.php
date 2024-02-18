@@ -15,6 +15,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
+    * {
+        font-family: Arial, Helvetica, sans-serif !important;
+    }
+
     /*Start Animations*/
     @-webkit-keyframes animatetop {
         from {
@@ -182,7 +186,7 @@
     </style>
 </head>
 <body>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 z-50">
+    <div class="min-h-screen flex sm:justify-center items-center pt-6 sm:pt-0 z-50">
 
         <div class="w-full sm:max-w-md mt-6 px-8 py-6 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
             <div class="text-center text-2xl mb-1 ">
@@ -206,7 +210,7 @@
             </div>
 
             <div class="mb-5">
-                <a href="#" class="bg-green-400 hover:bg-green-300 block text-center p-3 rounded text-white font-bold">{{ __('Auth page confirm') }}</a>
+                <a href="#" class="bg-green-400 hover:bg-green-300 block text-center p-3 rounded text-white font-bold">{{ __('Auth page button confirm') }}</a>
             </div>
 
             <div>
