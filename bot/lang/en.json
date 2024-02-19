@@ -3,5 +3,6 @@
     "Text welcome 2": "⚙️ If the site supports authorization via Telegram using this project, then you just need to send the authorization code to this bot. If it passes moderation, you will receive a corresponding notification. After this, you will need to return to the authorization page where you took the code and confirm your registration. All.",
     "Text welcome 3": "❓ If you have any questions, you can find answers to them in the following resources: official project website, GitHub page, AuthMaster group in Telegram",
     "Text succcess": "✅ Authorization has been sent to the site, confirm authorization on the page where you received the code",
-    "Text error": "⚠️ An error has occurred. The command does not exist or the entered code is incorrect"
+    "Text error": "⚠️ An error has occurred. The command does not exist or the entered code is incorrect",
+    "Text error Request": "Error when processing a request on the site server side"
 }

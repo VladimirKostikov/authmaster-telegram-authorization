@@ -36,6 +36,9 @@ class Database:
 
     def getFetchResult(self):
         return self.curs.fetchall()
+    
+    def getFetchOneResult(self):
+        return self.curs.fetchone()
 
     def close(self):
         self.connection.close()

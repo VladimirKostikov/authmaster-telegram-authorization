@@ -28,8 +28,19 @@ def default(bot, message):
     language = Language(mysql, message.from_user.language_code)
 
     if(len(message.text) == 91):
-        user_token = Token(message.text, mysql)
+        token = Token(message.text, mysql)
+        token.find()
         
-        bot.send_message(message.from_user.id, getMessage(language.getLang(), "Text success"))
+        if mysql.countRows() != 0:
+            if token.submit(message) == 1:
+                bot.send_message(message.from_user.id, getMessage(language.getLang(), "Text success"))
+                token.update()
+            else:
+                bot.send_message(message.from_user.id, getMessage(language.getLang(), "Text error Request"))
+                
+        else:
+            bot.send_message(message.from_user.id, getMessage(language.getLang(), "Text error"))
+
+        mysql.commit()
     else:
         bot.send_message(message.from_user.id, getMessage(language.getLang(), "Text error"))
