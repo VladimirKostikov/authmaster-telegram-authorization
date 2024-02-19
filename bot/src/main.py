@@ -1,19 +1,18 @@
 import requests
 import telebot;
+import modules
 from modules import config
-from modules import db
-from modules import commands
+from modules.commands import *
 
-mysql = db.Database()
 bot = telebot.TeleBot(config.token);
 
 switch = {
-    "/start": commands.start,
+    "/start": start,
 }
 
 @bot.message_handler(content_types=['text'])
 
 def get_text_messages(message):
-    switch.get(message.text, commands.default)(bot, message)
+    switch.get(message.text, default)(bot, message)
 
 bot.polling(none_stop=True, interval=0)
