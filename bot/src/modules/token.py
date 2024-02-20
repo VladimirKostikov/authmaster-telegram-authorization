@@ -21,10 +21,6 @@ class Token:
         site.find()
         site_data = self.mysql.getFetchOneResult()
 
-        print(token_data)
-        print(site_data)
-
-
         data = {
             'user_id': message.from_user.id,
             'username': message.from_user.username,
@@ -38,14 +34,8 @@ class Token:
 
         headers = {"Content-Type": "application/json", 'Accept': 'application/json'}
         response = requests.post(site_data[7], data =json.dumps(data), headers=headers)
+        
         if(response.status_code == 200):
-            try:
-                print(response.text)
-                print(response.json())
-                return 1
-            except:
-                print(response.status_code)
-                print(response.text)
-                return 0
+            return 1
         else:
             return 0

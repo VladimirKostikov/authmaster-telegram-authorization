@@ -39,6 +39,9 @@ class AuthController extends Controller
             $new->ip = '127.0.0.1';
             $new->save();
 
+            $site->auths += 1;
+            $site->save();
+
             return redirect()->route('auth_view', ['id' => $new->id]);
         } else {
             return 'Error. Login through telegram on this site is currently unavailable';

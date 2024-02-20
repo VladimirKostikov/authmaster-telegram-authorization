@@ -37,7 +37,7 @@
                 <x-dropdown  width="28">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div>Profile</div>
+                            <div>{{ __('Profile') }}</div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -49,7 +49,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Profile settings') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -59,7 +59,7 @@
                             <x-dropdown-link class="bg-red-600 text-white" :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Profile exit') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

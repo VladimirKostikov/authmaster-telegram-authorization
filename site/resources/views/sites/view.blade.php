@@ -24,11 +24,19 @@
                             </div>
                             <div class="flex flex-col pt-3">
                                 <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view notification') }}</dt>
-                                <dd class="text-lg font-semibold text-gray-500">{{ $site->http_notification }}</dd>
+                                <dd class="text-lg font-semibold text-gray-500">
+                                    <form action="" class="mb-3">
+                                        @csrf
+                                        <input type="text" value="{{ $site->http_notification }}" class="border-slate-200 rounded w-full">
+                                    </form>
+                                </dd>
                             </div>
                             <div class="flex flex-col pt-3">
                                 <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view redirect') }}</dt>
-                                <dd class="text-lg font-semibold text-gray-500">{{ $site->http_ref }}</dd>
+                                <form action="" class="mb-3">
+                                    @csrf
+                                    <input type="text" value="{{ $site->http_ref }}" class="border-slate-200 rounded w-full">
+                                </form>
                             </div>
                             <div class="flex flex-col pt-3">
                                 <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view API') }}</dt>
@@ -111,7 +119,7 @@
                             <span>{{ __('Site view stat day') }}</span>
                         </div>
                         <div class="text-2xl">
-                            <span>0</span>
+                            <span>{{ $auths_per_day }}</span>
                         </div>
                     </div>
                     <div class="text-center">
@@ -119,7 +127,7 @@
                             <span>{{ __('Site view stat month') }}</span>
                         </div>
                         <div class="text-2xl">
-                            <span>0</span>
+                            <span>{{ $auths_per_month }}</span>
                         </div>
                     </div>
                     <div class="text-center">
@@ -127,43 +135,17 @@
                             <span>{{ __('Site view stat year') }}</span>
                         </div>
                         <div class="text-2xl">
-                            <span>0</span>
+                            <span>{{ $auths_per_year }}</span>
                         </div>
                     </div>
-                </div>
-                <div class="mt-20">
-                    <div class="mb-7">
-                        <h1 class="text-gray-500 text-xl font-bold">{{ __('Site view stat graph title') }}</h1>
-                    </div>
-                    <canvas id="barChart"></canvas>
-                </div>
-
+                </div>    
                 
+                <div class="mt-10">
+                    <a href="{{ route('codes_site',['id'=>$site->id]) }}" class="block text-center bg-tg-100 text-white width-full px-5 py-3 rounded hover:bg-tg-200">{{ __('Site auths list') }}</a>
+                </div>
             </div>
         </div>
     </div>
 
-<script>
-    var ctx = document.getElementById('barChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [{
-                label: 'Авторизации',
-                data: [65, 59, 80, 81, 56],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+
 </x-app-layout>

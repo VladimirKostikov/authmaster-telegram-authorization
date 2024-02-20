@@ -6,6 +6,7 @@ use App\Http\Requests\AddSiteRequest;
 use App\Models\Site;
 use Auth;
 use Illuminate\View\View;
+use App\Models\Code;
 
 class SiteController extends Controller
 {
@@ -100,16 +101,23 @@ class SiteController extends Controller
     protected function view(int $id): View
     {
         $site = Site::find($id);
-        if (! $site->checked) {
+        $auths_per_day = Code::where('site',$id)->whereDay('created_at', date('d'))->count();
+        $auths_per_month = Code::where('site',$id)->whereMonth('created_at', date('m'))->count();
+        $auths_per_year = Code::where('site',$id)->whereYear('created_at', date('Y'))->count();
+        $code = null;
+
+        if (!$site->checked) {
             $code = CheckerController::getCode($site->id);
-        } else {
-            $code = null;
         }
 
         return view('sites.view', [
             'site' => $site,
             'code' => $code,
-            'auth_button' => self::getHTMLButtonCode($site->id)
+            'auth_button' => self::getHTMLButtonCode($site->id),
+
+            'auths_per_day' => $auths_per_day ?? 0,
+            'auths_per_month' => $auths_per_month ?? 0,
+            'auths_per_year' => $auths_per_year ?? 0
         ]);
     }
 

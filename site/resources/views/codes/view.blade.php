@@ -48,24 +48,21 @@
                             <h1 class="text-gray-500 text-xl font-bold">{{ __('Authorization view obj') }}</h1>
                         </div>
                         <code
-                        class="text-sm w-full h-1/2 sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
+                        class="text-sm w-full min-h-1/2 sm:text-base inline-flex text-left items-center space-x-4 bg-gray-800 text-white rounded-lg p-4 pl-6">
                         <span class="flex gap-4">
 
                             @if($code->status)
                             <span class="flex-1">
-<pre>
-{"menu": {  
-    "id": "file",  
-    "value": "File",  
-    "popup": {  
-        "menuitem": [  
-            {"value": "New", "onclick": "CreateDoc()"},  
-            {"value": "Open", "onclick": "OpenDoc()"},  
-            {"value": "Save", "onclick": "SaveDoc()"}  
-        ]  
-    }  
-}}  
-</pre>
+                                { <br>
+                                    'user_id': 12345678 <br>
+                                    'username': Username <br>
+                                    'lang': en <br>
+                                    'is_premium': 1 <br>
+                                    'ip': 127.0.0.1, <br>
+                                    'site_name': SITE NAME, <br>
+                                    'code': {{ mb_strimwidth($code->code, 0, 30, "...") }}  <br>
+                                    'code_created': {{ $code->created_at }} <br>
+                                }
                             </span>
                             @else
                             <p class="text-center">{{ __('Authorization view obj none') }}</p>

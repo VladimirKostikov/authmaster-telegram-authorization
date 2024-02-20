@@ -1,0 +1,6 @@
+HTTP/1.0 200 OK
+Cache-Control: no-cache, private
+Content-Type:  application/json
+Date:          Mon, 19 Feb 2024 19:01:29 GMT
+
+{"id":"332233","sas":"1"}
