@@ -46,6 +46,8 @@
     "Site view stat month" : "Per month",
     "Site view stat year" : "Per year",
     "Site view stat graph title" : "Last authorizations per this month",
+    "Site view update button": "Submit changes",
+    "Site view update error": "Error. Site domain and notification domain dont match",
     "Site auths list": "Get list of authorizations",
     "Profile": "Profile",
     "Profile settings": "Settings",

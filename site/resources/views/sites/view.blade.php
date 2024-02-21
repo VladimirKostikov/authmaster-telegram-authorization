@@ -70,7 +70,7 @@
                                     @endif
                                 @endif
 
-                                <input type="submit" value="Submit changes" class="block bg-tg-100 cursor-pointer hover:bg-tg-200 text-white w-full text-center p-3 rounded mt-3">
+                                <input type="submit" value="{{ __('Site view update button') }}" class="block bg-tg-100 cursor-pointer hover:bg-tg-200 text-white w-full text-center p-3 rounded mt-3">
                             
                             </dl>
                         </form>

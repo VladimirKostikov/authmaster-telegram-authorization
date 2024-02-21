@@ -47,6 +47,8 @@
     "Site view stat year": "За год",
     "Site view stat graph title": "Последние авторизации в этом месяце",
     "Site auths list": "Список авторизаций",
+    "Site view update button": "Подтвердить изменения",
+    "Site view update error": "Ошибка. Домен сайта и домен уведомлений не совпадают",
     "Profile": "Профиль",
     "Profile settings": "Настройки",
     "Profile exit": "Выход",
