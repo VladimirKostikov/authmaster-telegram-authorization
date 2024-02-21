@@ -87,7 +87,7 @@ class SiteController extends Controller
         $new->api = self::getValidApiCode();    
         $new->save();
 
-        CheckerController::add($new->id);
+        CheckerController::create($new->id);
 
         return redirect()->route('sites_list')->with('success', __('Notification success site added'));
     }

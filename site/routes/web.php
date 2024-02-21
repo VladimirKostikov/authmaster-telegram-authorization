@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SiteController;
-use App\Http\Controllers\TokenController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 /*
@@ -22,10 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('/');
 
-Route::any('/test/request', function(Request $req) {
-    File::put('requests/result.txt',response()->json($req->all()));
-    return response()->json($req->all());
-});
 
 Route::get('/dashboard', function () {
     return redirect()->route('sites_list');
@@ -45,12 +40,15 @@ Route::middleware('auth', 'language')->group(function () {
         session(['lang' => $lang]);
         return redirect()->back();
     })->name('setLang');
+    
+    // Profile management
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
 
+    // Site management
     Route::controller(SiteController::class)->group(function () {
         Route::prefix('sites')->group(function () {
             Route::get('/list', 'list')->name('sites_list');
@@ -65,10 +63,7 @@ Route::middleware('auth', 'language')->group(function () {
         });
     });
 
-    Route::controller(TokenController::class)->group(function () {
-        Route::get('/tokens', 'list')->name('tokens_list');
-    });
-
+    // List of authorizations
     Route::controller(CodeController::class)->group(function () {
         Route::prefix('codes')->group(function () {
             Route::get('/list', 'list')->name('codes_list');
