@@ -13,55 +13,68 @@
                 </div>
                 <div class="grid gap-x-6 gap-y-10 sm:grid-cols-1 lg:grid-cols-2 xl:gap-x-8">
                     <div>
-                        <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
-                            <div class="flex flex-col pb-3">
-                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view name') }}</dt>
-                                <dd class="text-lg font-semibold text-gray-500">{{ $site->name }}</dd>
-                            </div>
-                            <div class="flex flex-col py-3">
-                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view url') }}</dt>
-                                <dd class="text-lg font-semibold text-gray-500">{{ $site->url }}</dd>
-                            </div>
-                            <div class="flex flex-col pt-3">
-                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view notification') }}</dt>
-                                <dd class="text-lg font-semibold text-gray-500">
-                                    <form action="" class="mb-3">
-                                        @csrf
-                                        <input type="text" value="{{ $site->http_notification }}" class="border-slate-200 rounded w-full">
-                                    </form>
-                                </dd>
-                            </div>
-                            <div class="flex flex-col pt-3">
-                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view redirect') }}</dt>
-                                <form action="" class="mb-3">
-                                    @csrf
-                                    <input type="text" value="{{ $site->http_ref }}" class="border-slate-200 rounded w-full">
-                                </form>
-                            </div>
-                            <div class="flex flex-col pt-3">
-                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view API') }}</dt>
-                                <dd class="text-lg font-semibold text-gray-500">213hj31k2hsdak2o3ksaaq0qnkjhj</dd>
-                            </div>
-                            <div class="flex flex-col pt-3">
-                                <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view status') }}</dt>
-                                <dd class="text-lg font-semibold text-gray-500">
-                                    @if($site->status)
-                                        <p class="mt-1 text-sm text-green-500">{{ __('Site view status true') }}</p>
-                                    @else
-                                        <p class="mt-1 text-sm text-red-500">{{ __('Site view status false') }}</p>
-                                    @endif
-                                </dd>
-                            </div>
+                        <form action="{{ route('sites_form_update') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $site->id }}">
+                            <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+                                <div class="flex flex-col pb-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view name') }}</dt>
+                                    <dd class="text-lg font-semibold text-gray-500">{{ $site->name }}</dd>
+                                </div>
+                                <div class="flex flex-col py-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view url') }}</dt>
+                                    <dd class="text-lg font-semibold text-gray-500">{{ $site->url }}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view notification') }}</dt>
+                                    <dd class="text-lg font-semibold text-gray-500">
+                                        <input type="text" name="http_notification" required value="{{ $site->http_notification }}" class="border-slate-200 rounded w-full">
+                                    </dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view redirect') }}</dt>
+                                    <dd class="text-lg font-semibold text-gray-500">
+                                        <input type="text" name="http_ref" required value="{{ $site->http_ref }}" class="border-slate-200 rounded w-full">
+                                    </dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view API') }}</dt>
+                                    <dd class="text-lg font-semibold text-gray-500">213hj31k2hsdak2o3ksaaq0qnkjhj</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view status') }}</dt>
+                                    <dd class="text-lg font-semibold text-gray-500">
+                                        @if($site->status)
+                                            <p class="mt-1 text-sm text-green-500">{{ __('Site view status true') }}</p>
+                                        @else
+                                            <p class="mt-1 text-sm text-red-500">{{ __('Site view status false') }}</p>
+                                        @endif
+                                    </dd>
+                                </div>
 
-                            @if($site->checked)
-                                @if($site->status)
-                                    <a href="{{ route('sites_toggle', ['id'=>$site->id]) }}" class="block bg-red-500 text-white w-full text-center p-3 rounded mt-10">{{ __('Site view disable auth') }}</a>
-                                @else
-                                    <a href="{{ route('sites_toggle', ['id'=>$site->id]) }}" class="block bg-green-500 hover:bg-green-400 text-white w-full text-center p-3 rounded mt-10">{{ __('Site view enable auth') }}</a>
+                                @if ($errors->any())
+                                <div class="p-3 text-white bg-red-500 text-center rounded mt-2">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                                 @endif
-                            @endif
-                        </dl>
 
+                                @if($site->checked)
+                                    @if($site->status)
+                                        <a href="{{ route('sites_toggle', ['id'=>$site->id]) }}" class="block bg-red-500 text-white w-full text-center p-3 rounded mt-3">{{ __('Site view disable auth') }}</a>
+                                    @else
+                                        <a href="{{ route('sites_toggle', ['id'=>$site->id]) }}" class="block bg-green-500 hover:bg-green-400 text-white w-full text-center p-3 rounded mt-3">{{ __('Site view enable auth') }}</a>
+                                    @endif
+                                @endif
+
+                                <input type="submit" value="Submit changes" class="block bg-tg-100 cursor-pointer hover:bg-tg-200 text-white w-full text-center p-3 rounded mt-3">
+                            
+                            </dl>
+                        </form>
+                        
                     </div>
                     @if(!$site->checked)
                     <div class="bg-tg-100 p-10 rounded">

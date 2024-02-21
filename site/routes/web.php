@@ -61,6 +61,7 @@ Route::middleware('auth', 'language')->group(function () {
             Route::view('/add', 'sites.add')->name('sites_add');
 
             Route::post('/create', 'create')->name('sites_form_create');
+            Route::post('/update', 'update')->name('sites_form_update');
         });
     });
 

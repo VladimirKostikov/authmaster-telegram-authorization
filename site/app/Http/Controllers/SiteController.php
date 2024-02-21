@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddSiteRequest;
+use App\Http\Requests\UpdateSiteSettingsRequest;
 use App\Models\Site;
 use Auth;
 use Illuminate\View\View;
@@ -56,9 +57,12 @@ class SiteController extends Controller
         return view('components/api-auth-link',['site_id'=>$site]);
     }
 
-    protected static function isOwner(int $id): bool
-    {
+    protected static function isOwner(int $id): bool {
         return Site::find($id)->owner === Auth::user()->id;
+    }
+
+    protected static function checkIfTheURLIsCorrect(Site $site, string $url): bool {
+        return parse_url($site->url)["host"] === parse_url($url)["host"];
     }
 
     protected function list(): View
@@ -87,10 +91,25 @@ class SiteController extends Controller
 
         return redirect()->route('sites_list')->with('success', __('Notification success site added'));
     }
+    
 
-    protected function update(): void
+    protected function update(UpdateSiteSettingsRequest $req)
     {
-
+        if (self::isOwner($req->id)) {
+            $site = Site::find($req->id);
+            
+            if(self::checkIfTheURLIsCorrect($site, $req->http_notification) && self::checkIfTheURLIsCorrect($site, $req->http_ref)) {
+                $site->http_notification = $req->http_notification;
+                $site->http_ref = $req->http_ref;
+                $site->save();
+                return redirect()->back()->with('success', __('Notification success site settings updated'));
+            }
+            else {
+                return redirect()->back()->with('error', __('Notififcation error not correct url'));
+            }
+        } else {
+            return redirect()->back()->with('error', __('Notififcation error not owner'));
+        }
     }
 
     protected function destroy(int $id): Site
