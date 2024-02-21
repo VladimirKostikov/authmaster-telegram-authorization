@@ -1,8 +1,22 @@
+"""
+    Commands.py
+    This file contains methods that are called with chatbot commands
+    At the moment two methods are implemented: start, default (any message)
+"""
+
+"""
+    Import modules
+    Lang - language module.
+    DB - MySQL module.
+    Token - Token management for authorization
+"""
 from modules.lang import Language
 from modules.db import Database
 from modules.token import Token
 from modules.messages import getMessage
 
+# DB Initialization
+# The class object will be used in future method arguments
 mysql = Database()
 
 
