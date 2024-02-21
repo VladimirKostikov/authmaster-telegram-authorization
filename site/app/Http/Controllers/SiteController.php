@@ -105,7 +105,7 @@ class SiteController extends Controller
                 return redirect()->back()->with('success', __('Notification success site settings updated'));
             }
             else {
-                return redirect()->back()->with('error', __('Notififcation error not correct url'));
+                return redirect()->back()->with('error', __('Site view update error'));
             }
         } else {
             return redirect()->back()->with('error', __('Notififcation error not owner'));

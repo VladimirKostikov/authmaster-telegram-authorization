@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
 Route::any('/test/request', function(Request $req) {
     File::put('requests/result.txt',response()->json($req->all()));

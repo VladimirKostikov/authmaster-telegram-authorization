@@ -17,9 +17,6 @@
                     <x-nav-link :href="route('codes_list')" :active="request()->routeIs('logs_list')">
                         {{ __('Authorizations') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('https://github.com/VladimirKostikov/telegram-authorization/wiki')" :active="request()->routeIs('tokens_list')">
-                        {{ __('API') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('support')" :active="request()->routeIs('support')">
                         {{ __('Support') }}
                     </x-nav-link>

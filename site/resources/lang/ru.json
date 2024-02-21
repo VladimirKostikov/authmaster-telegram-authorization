@@ -94,6 +94,7 @@
     "Auth page title": "Вход в ",
     "Auth page description": "Для авторизации на сайте через Telegram вам необходимо скопировать код ниже и отправить его нашему боту. <br><br> После того, как вы отправили код боту, вам необходимо нажать на кнопку «Подтвердрить авторизацию».",
     "Auth page button open bot": "Открыть Телеграм бота",
+    "Auth page code copied": "Код скопирован",
     "Auth page button confirm": "Подтвердить вход",
-    "Auth page not official": "Это неофициальный сервис авторизации через Telegram. Подробнее об услуге можно узнать <a href='#' class='underline'>здесь</a>."
+    "Auth page not official": "Это неофициальный сервис авторизации через Telegram. Подробнее об услуге можно узнать <a href='/' target='_blank' class='underline'>здесь</a>."
   }
