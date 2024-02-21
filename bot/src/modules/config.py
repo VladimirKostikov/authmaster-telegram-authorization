@@ -1,3 +1,8 @@
+## Config file
+## This file is a configuration file
+## configparser copies the configuration from the ini file from the "config" folder.
+## The config stores information about db, langs, telegram token for bot.
+
 import configparser
 
 config = configparser.ConfigParser()

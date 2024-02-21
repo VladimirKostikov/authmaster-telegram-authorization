@@ -1,20 +1,30 @@
+## Token file
+## Class for working with authorization tokens
+
 import requests
 import json
 from .site import Site
 
 class Token:
+
+    ## Class constructor
+    ## Token - authorization's token
+    ## mysql - Object of Database class
     def __init__(self, token, mysql):
         self.token = token
         self.mysql = mysql
 
+    ## Find token in database
     def find(self):
         sql = "SELECT * FROM codes WHERE code=%s AND status=0 LIMIT 1"
         self.mysql.query(sql, [(self.token)])
 
+    ## Update token in database
     def update(self):
         sql = "UPDATE codes SET status=1 WHERE code=%s"
         self.mysql.query(sql, [(self.token)])
 
+    ## Send JSON with data to URL notification
     def submit(self, message):
         token_data = self.mysql.getFetchOneResult()
         site = Site(self.mysql, token_data[1])

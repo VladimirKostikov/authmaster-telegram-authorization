@@ -1,3 +1,6 @@
+## Messages file
+## Retrieve the message text by name according to the user's language
+
 import json
 
 def getMessage(code, message):
