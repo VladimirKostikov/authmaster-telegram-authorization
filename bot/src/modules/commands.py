@@ -29,6 +29,7 @@ def start(bot, message):
 
     ## Language installation
     ## Search for a record in the database where the language is set for the user's id
+    print(message.from_user.language_code)
     language = Language(mysql, message.from_user.language_code)
     language.find(message.from_user.id)
 
