@@ -96,5 +96,10 @@
     "Auth page button open bot": "Open Telegram bot",
     "Auth page button confirm": "Confirm authorization",
     "Auth page code copied": "Code copied",
-    "Auth page not official": "This is an unofficial authorization service through Telegram. You can find out more about the service <a href='/' target='_blank' class='underline'>here</a>."
+    "Auth page not official": "This is an unofficial authorization service through Telegram. You can find out more about the service <a href='/' target='_blank' class='underline'>here</a>.",
+    "Welcome page row 1": "AuthMaster offers a ready and simple solution in the form of algorithms for transferring Telegram user data directly to your web application for further authorization",
+    "Welcome page row 2": "From your web application redirects the user to the authorization page, where the user gets a code and a link to the bot",
+    "Welcome page button": "Connect your webapp",
+    "Welcome page made by": "Made by"
+
 }

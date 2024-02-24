@@ -96,5 +96,9 @@
     "Auth page button open bot": "Открыть Телеграм бота",
     "Auth page code copied": "Код скопирован",
     "Auth page button confirm": "Подтвердить вход",
-    "Auth page not official": "Это неофициальный сервис авторизации через Telegram. Подробнее об услуге можно узнать <a href='/' target='_blank' class='underline'>здесь</a>."
+    "Auth page not official": "Это неофициальный сервис авторизации через Telegram. Подробнее об услуге можно узнать <a href='/' target='_blank' class='underline'>здесь</a>.",
+    "Welcome page row 1": "AuthMaster предлагает готовое и простое решение в виде алгоритмов для передачи данных пользователей Telegram непосредственно в ваше веб-приложение для дальнейшей авторизации",
+    "Welcome page row 2": "Из вашего веб-приложения перенаправляет пользователя на страницу авторизации, где пользователь получает код и ссылку на бота",
+    "Welcome page button": "Подключить ваше веб приложение",
+    "Welcome page made by": "Сделал"
   }

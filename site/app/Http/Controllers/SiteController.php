@@ -11,6 +11,12 @@ use App\Models\Code;
 
 class SiteController extends Controller
 {
+    /**
+     * Generate code
+     * 
+     * @return string $res
+     */
+
     protected static function generateCode(): string
     {
         $chars = '0123456789abcdefghijklmnopqrs092u3tuvwxyzaskdhfhf9882323ABCDEFGHIJKLMNksadf9044OPQRSTUVWXYZ';
@@ -23,6 +29,11 @@ class SiteController extends Controller
         return $res;
     }
 
+    /**
+     * Get unique code from generateCode() method
+     * 
+     * @return string $code
+     */
     protected static function getValidApiCode(): string {
         $flag = 0;
         $code = self::generateCode();
@@ -37,6 +48,12 @@ class SiteController extends Controller
         return $code;
     }
 
+    /**
+     * Check rights of user on this website
+     * 
+     * @param int $id - site id in db
+     * @return redirect
+     */
     protected function checkPermissionOnSite(int $id)
     {
         $site = Site::find($id);
@@ -53,18 +70,41 @@ class SiteController extends Controller
 
     }
 
+    /**
+     * Get HTML button "Sign in with Telegram"
+     * 
+     * @param int $site - Site id
+     * @return View
+     */
     protected static function getHTMLButtonCode(int $site): View {
         return view('components/api-auth-link',['site_id'=>$site]);
     }
 
+    /**
+     *  If user is owner of this site
+     * 
+     * @param int $id
+     * @return bool
+     */
     protected static function isOwner(int $id): bool {
         return Site::find($id)->owner === Auth::user()->id;
     }
 
+    /**
+     * Check if the domains of the links match
+     * 
+     * @param Site $site - object of Site's class
+     * @param string $url - URL
+     * @return bool
+     */
     protected static function checkIfTheURLIsCorrect(Site $site, string $url): bool {
         return parse_url($site->url)["host"] === parse_url($url)["host"];
     }
 
+    /**
+     * List of the sites
+     * @return View
+     */
     protected function list(): View
     {
         $sites = Site::where('owner', Auth::user()->id)->get();
@@ -74,7 +114,11 @@ class SiteController extends Controller
         ]);
     }
 
-
+    /**
+     * Add site
+     * @param AddSiteRequest $req
+     * @return redirect
+     */
     protected function create(AddSiteRequest $req)
     {
         $new = new Site;
@@ -92,7 +136,11 @@ class SiteController extends Controller
         return redirect()->route('sites_list')->with('success', __('Notification success site added'));
     }
     
-
+    /**
+     * Update site settings
+     * @param UpdateSiteSettingsRequest $req
+     * @return redirect
+     */
     protected function update(UpdateSiteSettingsRequest $req)
     {
         if (self::isOwner($req->id)) {
@@ -112,11 +160,21 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * Delete site
+     * @param int $id
+     * @return Site
+     */
     protected function destroy(int $id): Site
     {
         return Site::delete($id);
     }
 
+    /**
+     * View site
+     * @param int $id
+     * @return View
+     */
     protected function view(int $id): View
     {
         $site = Site::find($id);
@@ -141,7 +199,11 @@ class SiteController extends Controller
     }
 
    
-
+    /**
+     * Toggle site's authorizations
+     * @param int $id
+     * @return redirect
+     */
     protected function toggle(int $id)
     {
         if (self::isOwner($id)) {

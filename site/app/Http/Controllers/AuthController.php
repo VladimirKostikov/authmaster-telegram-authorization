@@ -78,13 +78,10 @@ class AuthController extends Controller
         $code = Code::find($id);
         $site = Site::find($code->site);
 
-        $sitename = $site->name;
-        $siteurl = $site->url;
 
         return view('auth', [
             'code' => $code,
-            'sitename' => $sitename,
-            'siteurl' => $siteurl
+            'site' => $site
         ]);
     }
 }

@@ -17,9 +17,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
 
 
 Route::get('/dashboard', function () {
@@ -27,6 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('language')->group(function () {
+    Route::get('/', function () { return view('welcome');})->name('/');
     Route::controller(AuthController::class)->group(function () {
         Route::prefix('/authorization')->group(function () {
             Route::get('/create/{site_id}', 'create')->name('auth_create');

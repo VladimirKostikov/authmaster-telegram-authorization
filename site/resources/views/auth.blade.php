@@ -190,10 +190,10 @@
 
         <div class="w-full sm:max-w-md mt-6 px-8 py-6 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
             <div class="text-center text-2xl mb-1 ">
-                <h1>{{ __('Auth page title') }} {{ $sitename }}</h1>
+                <h1>{{ __('Auth page title') }} {{ $site->name }}</h1>
             </div>
             <div class="mb-5 text-center text-sm text-gray-400">
-                <a href="{{ url($siteurl) }}">{{ $siteurl }}</a>
+                <a href="{{ url($site->url) }}">{{ $site->url }}</a>
             </div>
             <div class="text-justify text-base mb-5">
                 <p>{!! __('Auth page description') !!}</p>
@@ -210,7 +210,7 @@
             </div>
 
             <div class="mb-5">
-                <a href="#" class="bg-green-400 hover:bg-green-300 block text-center p-3 rounded text-white font-bold">{{ __('Auth page button confirm') }}</a>
+                <a href="{{ url($site->http_ref) }}" class="bg-green-400 hover:bg-green-300 block text-center p-3 rounded text-white font-bold">{{ __('Auth page button confirm') }}</a>
             </div>
 
             <div>
