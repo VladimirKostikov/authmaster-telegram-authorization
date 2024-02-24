@@ -82,7 +82,6 @@
 - PHP 8.1.2-1ubuntu2.14
 - Python 3.10.12
 - Tailwind 3.4.1
-- jQuery 3.7.1
 - Laravel Framework 10.28.0
 - NPM v10.2.4
 - python-telegram-bot (library)
