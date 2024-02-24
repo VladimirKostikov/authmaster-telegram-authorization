@@ -10,7 +10,7 @@
                 <div>
                     <h1 class="font-bold text-3xl text-gray-500">{{ __('About title') }}</h1>
                 </div>
-                <div class="mt-5 text-lg text-justify text-gray-600">
+                <div class="mt-5  text-lg text-justify text-gray-600">
                     <p class="mb-3">
                         {!! __('About row 1') !!}
                     </p>
@@ -20,12 +20,16 @@
                     <p class="mb-3">
                         {!! __('About row 3') !!}
 
-                        {!! __('About list') !!}
+                        <div class="ml-5">
+                            {!! __('About list') !!}
+                        </div>
                     </p>
                     <p>
                         {{ __('About row 4') }}
 
-                        {!! __('About list 2') !!}
+                        <div class="ml-5">
+                            {!! __('About list 2') !!}
+                        </div>
                     </p>
 
                     <p class="mb-3">

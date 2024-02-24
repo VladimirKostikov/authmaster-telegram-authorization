@@ -14,7 +14,9 @@
                     <p class="mb-3">
                        {{ __('Help row 1')}}
                     </p>   
-                    {!! __('Help row 2') !!}
+                    <div class="ml-5">
+                        {!! __('Help row 2') !!}
+                    </div>
                     <p class="mb-3">
                         {{ __('Help row 3') }}
                     </p>  

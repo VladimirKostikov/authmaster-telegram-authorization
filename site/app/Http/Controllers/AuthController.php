@@ -71,9 +71,9 @@ class AuthController extends Controller
      * Authorization page via Telegram
      * 
      * @param integer $id - Site's id
-     * @return View
+     * @return view
      */
-    protected function view(int $id): View
+    protected function view(int $id)
     {
         $code = Code::find($id);
         $site = Site::find($code->site);
