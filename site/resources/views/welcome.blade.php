@@ -10,7 +10,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="shortcut icon" href="{{ asset('assets/icons/favicon.ico') }}" type="image/x-icon">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    
+        <link rel="stylesheet" href="{{ asset('assets/js/slidercraft/css/slidercraft.css') }}">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     
@@ -45,13 +46,10 @@
                 class='lg:hover:text-[#007bff] text-white font-semibold text-[18px]'>Advantages</a>
             </li>
             <li class='max-lg:border-b max-lg:py-2 px-3 max-lg:rounded'><a href='javascript:void(0)'
-                class='lg:hover:text-[#007bff] text-white font-semibold text-[18px]'>Blog</a>
+                class='lg:hover:text-[#007bff] text-white font-semibold text-[18px]'>Media</a>
             </li>
             <li class='max-lg:border-b max-lg:py-2 px-3 max-lg:rounded'><a href='javascript:void(0)'
-                class='lg:hover:text-[#007bff] text-white block font-semibold text-[18px]'>About</a>
-            </li>
-            <li class='max-lg:border-b max-lg:py-2 px-3 max-lg:rounded'><a href='javascript:void(0)'
-                class='lg:hover:text-[#007bff] text-white block font-semibold text-[18px]'>Contact</a>
+                class='lg:hover:text-[#007bff] text-white block font-semibold text-[18px]'>Socials</a>
             </li>
           </ul>
         </div>
@@ -119,16 +117,46 @@
             <p class="mb-3 list-disc">
                 {!! __('About row 3') !!}
 
-                <div class="ml-5 text-[18px]">
+                <div class="ml-5 text-[20px]">
                     {!! __('About list') !!}
                 </div>
             </p>
 
+            <p class="mb-3">
+                {!! __('About row 4') !!}
+            </p>
+
             <p class="mb-3 list-disc">
-                <div class="ml-5 text-[18px]">
+                <div class="ml-5 text-[20px]">
                     {!! __('About list 2') !!}
                 </div>
             </p>
+        </div>
+    </section>
+
+    <hr class="mt-[50px] mb-[50px]">
+
+    <section class="mt-[50px]">
+        <div class="w-3/5 m-auto text-[24px]">
+            <h1 class="text-[36px] mb-5 leading-10 font-bold">Media</h1>
+
+            <div class="slider" id="slider" style="position: relative">
+                <div>
+                    <img src="{{ asset('assets/img/screen1.png')}}" alt="">
+                </div>
+                <div>
+                    <img src="{{ asset('assets/img/screen2.png')}}" alt="">
+                </div>
+                <div>
+                    <img src="{{ asset('assets/img/screen3.png')}}" alt="">
+                </div>
+            </div>
+            <script type="module">
+                import slider from "{{ asset('assets/js/slidercraft/main.js') }}";
+                var sl = new slider('#slider', {
+                    width: "100%"
+                });
+            </script>
         </div>
     </section>
 

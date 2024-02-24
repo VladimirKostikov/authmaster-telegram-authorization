@@ -1,0 +1,43 @@
+/**
+
+Main slider CSS file
+
+**/
+.active {
+    display: block;
+}
+
+.slidercraft-arrow {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+
+    width: 51px;
+    height: 51px;
+    padding: 10px;
+    cursor: pointer;
+    background: #0000007a;
+}
+
+.slidercraft-arrow-left {
+    left: 0px;
+}
+
+.slidercraft-arrow-right {
+    right: 0px;
+}
+
+.slidercraft-arrow:hover {
+    background: #000000ca;
+}
+
+
+.slidercraft-menu {
+    position: absolute;
+    padding: 10px 20px;
+    background: #000000ca;
+    bottom: 0;
+    display: flex;
+    gap: 10px;
+}

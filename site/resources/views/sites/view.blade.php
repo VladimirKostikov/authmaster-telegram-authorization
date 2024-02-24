@@ -38,10 +38,6 @@
                                     </dd>
                                 </div>
                                 <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view API') }}</dt>
-                                    <dd class="text-lg font-semibold text-gray-500">213hj31k2hsdak2o3ksaaq0qnkjhj</dd>
-                                </div>
-                                <div class="flex flex-col pt-3">
                                     <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ __('Site view status') }}</dt>
                                     <dd class="text-lg font-semibold text-gray-500">
                                         @if($site->status)
