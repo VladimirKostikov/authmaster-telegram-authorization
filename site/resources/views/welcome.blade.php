@@ -116,7 +116,7 @@
         <div class="w-3/5 m-auto text-[24px]">
             <h1 class="text-[36px] mb-5 leading-10 font-bold">Usage</h1>
             <p class="mb-3">
-                1
+                1.
             </p>
         </div>
     </section>
