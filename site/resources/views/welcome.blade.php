@@ -10,11 +10,12 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="shortcut icon" href="{{ asset('assets/icons/favicon.ico') }}" type="image/x-icon">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="{{ asset('assets/js/slidercraft/css/slidercraft.css') }}">
 
+        
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
     
     </head>
 <body>
